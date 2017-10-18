@@ -1,19 +1,17 @@
-export const ADD_POST = 'ADD_POST'
-export const ADD_COMMENT = 'ADD_COMMENT'
+import * as readableAPI from '../utils/api';
 
-// export function addRecipe({ day, recipe, meal })  {
-//   return {
-//     type: ADD_RECIPE,
-//     day,
-//     recipe,
-//     meal,
-//   };
-// }
-//
-// export function removeFromCalendar({day, meal})  {
-//   return {
-//     type: REMOVE_FROM_CALENDAR,
-//     day,
-//     meal,
-//   };
-// }
+export const RECEIVE_CATEGORIES = 'RECEIVE_CATEGORIES';
+// export const ADD_POST = 'ADD_POST';
+// export const DELETE_POST = 'DELETE_POST';
+// export const ADD_COMMENT = 'ADD_COMMENT';
+
+export const receiveCategories = categories => ({
+  type: RECEIVE_CATEGORIES,
+  categories,
+});
+
+export const fetchCategories = () => dispatch => (
+  readableAPI
+    .fetchCategories()
+    .then(categories => dispatch(receiveCategories(categories)))
+);

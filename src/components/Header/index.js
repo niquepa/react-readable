@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { Toolbar, ToolbarRow, ToolbarSection, ToolbarTitle } from 'react-mdc-web/lib';
 
@@ -23,4 +24,8 @@ class Header extends Component {
   }
 }
 
-export default Header;
+const mapStateToProps = ({ global }) => ({
+  categories: global.categories,
+});
+
+export default connect(mapStateToProps)(Header);
