@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux';
-import { RECEIVE_CATEGORIES } from '../actions/index';
+import { RECEIVE_CATEGORIES, RECEIVE_POSTS } from '../actions/index';
 
 const global = (state = {}, action) => {
   switch (action.type) {
@@ -9,10 +9,29 @@ const global = (state = {}, action) => {
         ...state,
         categories,
       };
+    case RECEIVE_POSTS:
+      const { posts } = action;
+      return {
+        ...state,
+        posts,
+      };
     default:
       return state;
   }
 };
+
+// const posts = (state = {}, action) => {
+//   switch (action.type) {
+//     case RECEIVE_POSTS:
+//       const { posts } = action;
+//       return {
+//         ...state,
+//         posts,
+//       };
+//     default:
+//       return state;
+//   }
+// };
 
 export default combineReducers({
   global,

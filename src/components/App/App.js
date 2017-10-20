@@ -1,23 +1,27 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { withRouter } from 'react-router-dom';
+import { withRouter, Route } from 'react-router-dom';
+import { Grid } from 'react-mdc-web/lib';
 import 'material-components-web/dist/material-components-web.min.css';
-import Header from '../Header/';
+import Header from '../Shared/Header';
+import PostsList from '../Posts/PostsList'
+import Footer from '../Shared/Footer';
 import '../../assets/css/App.css';
-import { fetchCategories } from '../../actions/index';
+import { fetchCategories, fetchPosts } from '../../actions/index';
 
 
 class App extends Component {
-
   componentDidMount() {
     this.props.fetchCategories();
+    this.props.fetchPosts();
   }
 
   render() {
     return (
-      <div className="app">
+      <main>
         <Header />
-      </div>
+        <PostsList />
+      </main>
     );
   }
 }
@@ -28,6 +32,7 @@ const mapStateToProps = ({ global }) => ({
 
 const mapDispatchToProps = dispatch => ({
   fetchCategories: () => dispatch(fetchCategories()),
+  fetchPosts: () => dispatch(fetchPosts()),
 });
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(App));
