@@ -7,13 +7,16 @@ import PostsList from '../Posts/PostsList';
 import 'material-components-web/dist/material-components-web.css';
 import 'material-design-icons/iconfont/material-icons.css';
 import '../../assets/css/App.css';
-import { fetchCategories, fetchPosts } from '../../actions/index';
+import { fetchCategories, fetchComments, fetchPosts } from '../../actions/index';
 
 
 class App extends Component {
   componentDidMount() {
     this.props.fetchCategories();
     this.props.fetchPosts();
+    // this.props.posts.map((post) => {
+    //   this.props.fetchComments(post.id);
+    // });
   }
 
   render() {
@@ -28,11 +31,13 @@ class App extends Component {
 
 const mapStateToProps = ({ global }) => ({
   categories: global.categories,
+  // posts: global.posts,
 });
 
 const mapDispatchToProps = dispatch => ({
   fetchCategories: () => dispatch(fetchCategories()),
   fetchPosts: () => dispatch(fetchPosts()),
+  // fetchComments: () => dispatch(fetchComments()),
 });
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(App));
