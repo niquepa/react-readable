@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { Toolbar, ToolbarRow, ToolbarSection, ToolbarTitle, Drawer, DrawerHeader, DrawerHeaderContent, DrawerContent, Navigation, Icon, Tabbar, Tab } from 'react-mdc-web/lib';
-import MenuIcon from 'mdi-react/MenuIcon';
+import { Toolbar, ToolbarRow, ToolbarSection, ToolbarTitle, Tabbar, Tab } from 'react-mdc-web/lib';
 
 class Header extends Component {
   state = {
@@ -23,6 +22,7 @@ class Header extends Component {
               <Tab
                 active={this.state.activeCat === category.path}
                 onClick={() => { this.setState({ activeCat: category.path }); }}
+                key={category.path}
               >
                 {category.name}
               </Tab>
