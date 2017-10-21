@@ -13,26 +13,24 @@ class Header extends Component {
     const { categories } = this.props;
 
     return (
-      <div>
-        <Toolbar fixed>
-          <ToolbarRow>
-            <ToolbarSection align="start">
-              <ToolbarTitle>Readable - a react project</ToolbarTitle>
-            </ToolbarSection>
-            <Tabbar align="start">
-              { categories && categories.map(category => (
-                <Tab
-                  active={this.state.activeCat === category.path}
-                  onClick={() => { this.setState({ activeCat: category.path }); }}
-                >
-                  {category.name}
-                </Tab>
-              ))}
-              <span className="mdc-tab-bar__indicator" />
-            </Tabbar>
-          </ToolbarRow>
-        </Toolbar>
-      </div>
+      <Toolbar fixed>
+        <ToolbarRow>
+          <ToolbarSection align="start">
+            <ToolbarTitle>Readable - a react project</ToolbarTitle>
+          </ToolbarSection>
+          <Tabbar align="start">
+            { categories && categories.map(category => (
+              <Tab
+                active={this.state.activeCat === category.path}
+                onClick={() => { this.setState({ activeCat: category.path }); }}
+              >
+                {category.name}
+              </Tab>
+            ))}
+            <span className="mdc-tab-bar__indicator" />
+          </Tabbar>
+        </ToolbarRow>
+      </Toolbar>
     );
   }
 }

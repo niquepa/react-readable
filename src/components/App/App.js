@@ -18,7 +18,7 @@ class App extends Component {
 
   render() {
     return (
-      <main>
+      <main className="mdc-typography main">
         <Header />
         <PostsList />
       </main>
