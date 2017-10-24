@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { withRouter, Route } from 'react-router-dom';
+import { Link, Route, withRouter } from 'react-router-dom';
 import { Card, CardHeader, CardTitle, CardSubtitle, CardMedia, CardText, CardActions, Button, Fab, Icon, Grid, Cell } from 'react-mdc-web/lib';
 
 class PostCard extends Component {
@@ -12,7 +12,6 @@ class PostCard extends Component {
       postComments = comments[post.id];
     }
     return (
-      // TODO: Change the key for cell
       <Cell col={4} tablet={6} phone={12} key={post.id}>
         <Card className="post-card" key={post.id}>
           <CardHeader>

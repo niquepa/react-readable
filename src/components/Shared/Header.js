@@ -1,31 +1,35 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, Route, withRouter } from 'react-router-dom';
 import { Toolbar, ToolbarRow, ToolbarSection, ToolbarTitle, Tabbar, Tab } from 'react-mdc-web/lib';
 
 class Header extends Component {
   state = {
-    activeCat: null,
+    // activeCat: null,
   }
 
   render() {
-    const { categories } = this.props;
+    const { categories, match } = this.props;
+    
+    console.log(`MATCH:${JSON.stringify(match)}`)
 
     return (
       <Toolbar fixed>
         <ToolbarRow>
           <ToolbarSection align="start">
-            <ToolbarTitle>Readable - a react project</ToolbarTitle>
+            <ToolbarTitle><Link to="/" className="header-link">Readable - a react project</Link></ToolbarTitle>
           </ToolbarSection>
           <Tabbar align="start">
             { categories && categories.map(category => (
-              <Tab
-                active={this.state.activeCat === category.path}
-                onClick={() => { this.setState({ activeCat: category.path }); }}
+              <Route
                 key={category.path}
-              >
-                {category.name}
-              </Tab>
+                path={`/${category.path}`}
+                children={({ match }) => (
+                  <Tab active={!!match} key={category.path} component="span">
+                    <Link to={category.path} className="header-link">{category.name}</Link>
+                  </Tab>
+              )}
+              />
             ))}
             <span className="mdc-tab-bar__indicator" />
           </Tabbar>
@@ -39,4 +43,4 @@ const mapStateToProps = ({ global }) => ({
   categories: global.categories,
 });
 
-export default connect(mapStateToProps)(Header);
+export default withRouter(connect(mapStateToProps)(Header));
