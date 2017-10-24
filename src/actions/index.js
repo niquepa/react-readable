@@ -40,3 +40,16 @@ export const fetchComments = postId => dispatch => (
     .fetchComments(postId)
     .then(comments => dispatch(receiveComments(comments, postId)))
 );
+
+export const fetchPostAndComments = () => (dispatch, getState) => (
+  dispatch(fetchPosts())
+    .then(() => {
+      getState().global.posts.map(post => dispatch(fetchComments(post.id)));
+    })
+)
+// export function fetchPostAndComments() {
+//   return (dispatch, getState) => dispatch(fetchPosts())
+//     .then(() => {
+//       getState().global.posts.map(post => dispatch(fetchComments(post.id)));
+//     });
+// }

@@ -1,18 +1,16 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter, Route } from 'react-router-dom';
-import { fetchComments } from '../../actions/index';
 import { Card, CardHeader, CardTitle, CardSubtitle, CardMedia, CardText, CardActions, Button, Fab, Icon, Grid, Cell } from 'react-mdc-web/lib';
 
 class PostCard extends Component {
-  componentDidMount() {
-    this.props.fetchComments(this.props.post.id)
-      .then(comments => console.log(`COMMENTS: ${comments}`))
-  }
-
   render() {
-    const { post } = this.props;
+    const { post, comments } = this.props;
 
+    let postComments = ((comments || '')[post.id] || '');
+    if (postComments !== '') {
+      postComments = comments[post.id];
+    }
     return (
       // TODO: Change the key for cell
       <Cell col={4} tablet={6} phone={12} key={post.id}>
@@ -35,7 +33,7 @@ class PostCard extends Component {
             <Grid>
               <Cell col={8}>
                 <Button compact >Read more ...</Button>
-                {}<Icon name="comment" />
+                {postComments.length}<Icon name="comment" />
               </Cell>
               <Cell col={1}>
                 {post.voteScore}
@@ -53,12 +51,11 @@ class PostCard extends Component {
 }
 
 const mapStateToProps = ({ global }) => ({
-  //comments: global.comments.filter(comment => comment === this.props.post.id),
-  // posts: global.posts,
+  comments: global.comments,
 });
 
 const mapDispatchToProps = dispatch => ({
-  fetchComments: post => dispatch(fetchComments(post)),
+  // fetchComments: post => dispatch(fetchComments(post)),
 });
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(PostCard));

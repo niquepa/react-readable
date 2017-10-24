@@ -15,11 +15,9 @@ export const fetchCategories = () => (
 export const fetchPosts = () => (
   fetch(`${api}/posts`, { headers })
     .then(res => res.json())
-    // .then(data => data.posts)
 );
 
 export const fetchComments = postId => (
   fetch(`${api}/posts/${postId}/comments`, { headers })
     .then(res => res.json())
-    //.then(data => data.comments)
 );

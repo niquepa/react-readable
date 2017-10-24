@@ -32,30 +32,6 @@ const global = (state = {}, action) => {
   }
 };
 
-// ...state,
-//   comments: {
-// ...state['comments'],
-//     [postId]: comments,
-// },
-// ...state,
-//   [day]: {
-// ...state[day],
-//     [meal]: recipe.label,
-// }
-
-// const posts = (state = {}, action) => {
-//   switch (action.type) {
-//     case RECEIVE_POSTS:
-//       const { posts } = action;
-//       return {
-//         ...state,
-//         posts,
-//       };
-//     default:
-//       return state;
-//   }
-// };
-
 export default combineReducers({
   global,
 });
