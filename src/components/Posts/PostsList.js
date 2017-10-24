@@ -6,21 +6,21 @@ import PostCard from './PostCard';
 
 class PostsList extends Component {
   render() {
-    const { posts } = this.props;
+    const { posts, match } = this.props;
+    
+    const category = ((match.params || '').category || '');
+    let filteredPosts = posts;
+    if (category && posts) {
+      filteredPosts = posts.filter(post => post.category === category);
+    }
 
     return (
       <main className="mdc-content posts-list">
         <main className="posts-list-int">
           <Grid>
-            <Route
-              key={category.path}
-              path={`/${category.path}`}
-              children={({ match }) => (
-                { posts && posts.map(post => (
-                  <PostCard post={post} key={post.id} />
+            { filteredPosts && filteredPosts.map(post => (
+              <PostCard post={post} key={post.id} />
                 ))}
-              )}
-            />
           </Grid>
         </main>
       </main>

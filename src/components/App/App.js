@@ -31,22 +31,12 @@ class App extends Component {
     return (
       <main className="mdc-typography main">
         <Header />
-        <PostsList />
-        {/*<PostsList />*/}
-        {/*<Route*/}
-          {/*exact*/}
-          {/*path="/"*/}
-          {/*render={() => (*/}
-            {/*<PostsList />*/}
-        {/*)}*/}
-        {/*/>*/}
-        {/*<Route*/}
-          {/*exact*/}
-          {/*path="/:category"*/}
-          {/*render={() => (*/}
-            {/*<PostsList />*/}
-        {/*)}*/}
-        {/*/>*/}
+        <Route exact path="/:category" render={() => (
+          <PostsList />
+        )} />
+        <Route exact path="/" render={() => (
+          <PostsList />
+        )} />
       </main>
     );
   }

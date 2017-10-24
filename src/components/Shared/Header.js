@@ -10,8 +10,6 @@ class Header extends Component {
 
   render() {
     const { categories, match } = this.props;
-    
-    console.log(`MATCH:${JSON.stringify(match)}`)
 
     return (
       <Toolbar fixed>
