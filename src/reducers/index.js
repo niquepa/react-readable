@@ -16,15 +16,32 @@ const global = (state = {}, action) => {
         posts,
       };
     case RECEIVE_COMMENTS:
-      const { comments } = action;
+      const { comments, postId } = action;
+      if (comments.length === 0) {
+        return state;
+      }
       return {
         ...state,
-        comments,
+        comments: {
+          ...state.comments,
+          [postId]: comments,
+        },
       };
     default:
       return state;
   }
 };
+
+// ...state,
+//   comments: {
+// ...state['comments'],
+//     [postId]: comments,
+// },
+// ...state,
+//   [day]: {
+// ...state[day],
+//     [meal]: recipe.label,
+// }
 
 // const posts = (state = {}, action) => {
 //   switch (action.type) {

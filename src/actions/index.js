@@ -17,9 +17,10 @@ export const receivePosts = posts => ({
   posts,
 });
 
-export const receiveComments = comments => ({
+export const receiveComments = (comments, postId) => ({
   type: RECEIVE_COMMENTS,
   comments,
+  postId,
 });
 
 export const fetchCategories = () => dispatch => (
@@ -28,17 +29,14 @@ export const fetchCategories = () => dispatch => (
     .then(categories => dispatch(receiveCategories(categories)))
 );
 
-export const fetchComments = postId => dispatch => (
-  readableAPI
-    .fetchComments(postId)
-    .then(comments => dispatch(receiveComments(comments)))
-);
-
 export const fetchPosts = () => dispatch => (
   readableAPI
     .fetchPosts()
-    .then((posts) => {
-      dispatch(receivePosts(posts));
-      posts.map(post => fetchComments(post.id));
-    })
+    .then(posts => dispatch(receivePosts(posts)))
+);
+
+export const fetchComments = postId => dispatch => (
+  readableAPI
+    .fetchComments(postId)
+    .then(comments => dispatch(receiveComments(comments, postId)))
 );
