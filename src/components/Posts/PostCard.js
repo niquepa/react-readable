@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link, Route, withRouter } from 'react-router-dom';
-import { Card, CardHeader, CardTitle, CardSubtitle, CardMedia, CardText, CardActions, Button, Fab, Icon, Grid, Cell } from 'react-mdc-web/lib';
+import { Card, CardHeader, CardTitle, CardSubtitle, CardMedia, CardText, CardActions, Button, Icon, Grid, Cell, Caption, Title } from 'react-mdc-web/lib';
 
 class PostCard extends Component {
   render() {
@@ -15,8 +15,16 @@ class PostCard extends Component {
       <Cell col={4} tablet={6} phone={12} key={post.id}>
         <Card className="post-card" key={post.id}>
           <CardHeader>
-            <CardTitle>{post.title} <Fab mini><Icon name="create" /></Fab><Fab mini><Icon name="delete" /></Fab></CardTitle>
-            <CardSubtitle>by {post.author} in {post.category}</CardSubtitle>
+            <CardTitle>{post.title}</CardTitle>
+            <CardSubtitle>
+              by <b>{post.author}</b> in <Link to={post.category}>{post.category}</Link>
+            </CardSubtitle>
+            <CardSubtitle>
+              <b>{postComments.length}</b> Comments |
+              <Button className="card-buttons" primary><Icon name="keyboard_arrow_left" className="mdc-button__icon"/></Button>
+              <Caption><b>{post.voteScore} Votes</b></Caption>
+              <Button className="card-buttons" primary><Icon name="keyboard_arrow_right" className="mdc-button__icon"/></Button>
+            </CardSubtitle>
           </CardHeader>
           <CardMedia
             style={{
@@ -30,16 +38,12 @@ class PostCard extends Component {
           </CardText>
           <CardActions>
             <Grid>
-              <Cell col={8}>
-                <Button compact >Read more ...</Button>
-                {postComments.length}<Icon name="comment" />
+              <Cell col={6}>
+                <Button raised compact primary>Read more ...</Button>
               </Cell>
-              <Cell col={1}>
-                {post.voteScore}
-              </Cell>
-              <Cell col={3}>
-                <Fab mini><Icon name="thumb_up" /></Fab>
-                <Fab mini><Icon name="thumb_down" /></Fab>
+              <Cell col={6}>
+                <Button raised dense primary className="card-buttons"><Icon name="edit" className="mdc-button__icon"/></Button>
+                <Button raised dense primary className="card-buttons"><Icon name="delete" className="mdc-button__icon"/></Button>
               </Cell>
             </Grid>
           </CardActions>

@@ -31,3 +31,16 @@ body{
   text-decoration: none;
   color: white;
 }
+
+.card-buttons {
+  min-width: auto;
+  margin-right: 10px;
+}
+
+.mdc-button__icon {
+  display: inline-block;
+  height: 18px;
+  /*margin-right: 8px;*/
+  line-height: inherit;
+  vertical-align: top;
+}
