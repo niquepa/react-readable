@@ -8,19 +8,6 @@ import 'material-design-icons/iconfont/material-icons.css';
 import '../../assets/css/App.css';
 import { fetchCategories, fetchPostAndComments } from '../../actions/index';
 
-
-const routes = [
-  { path: '/',
-    exact: true,
-    sidebar: () => <div>home!</div>,
-    main: () => <h2>Home</h2>
-  },
-  { path: '/:category',
-    sidebar: () => <div>bubblegum!</div>,
-    main: () => <h2>Bubblegum</h2>
-  },
-]
-
 class App extends Component {
   componentDidMount() {
     this.props.fetchCategories();

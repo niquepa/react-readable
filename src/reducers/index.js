@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux';
-import { RECEIVE_CATEGORIES, RECEIVE_COMMENTS, RECEIVE_POSTS } from '../actions/index';
+import { RECEIVE_CATEGORIES, RECEIVE_COMMENTS, RECEIVE_POST, RECEIVE_POSTS } from '../actions/index';
 
 const global = (state = {}, action) => {
   switch (action.type) {
@@ -26,6 +26,17 @@ const global = (state = {}, action) => {
           ...state.comments,
           [postId]: comments,
         },
+      };
+    case RECEIVE_POST:
+      const { post } = action;
+      let postsNew = state.posts.filter(item => item.id !== post.id).concat(post);
+      return {
+        ...state,
+        posts: postsNew
+        // posts: {
+        //   ...state.posts,
+        //   post,
+        // },
       };
     default:
       return state;

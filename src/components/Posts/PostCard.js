@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Link, Route, withRouter } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import { Card, CardHeader, CardTitle, CardSubtitle, CardMedia, CardText, CardActions, Button, Icon, Grid, Cell, Caption, Title } from 'react-mdc-web/lib';
+import PostVote from './PostVote';
 
 class PostCard extends Component {
   render() {
@@ -21,9 +22,7 @@ class PostCard extends Component {
             </CardSubtitle>
             <CardSubtitle>
               <b>{postComments.length}</b> Comments |
-              <Button className="card-buttons" primary><Icon name="keyboard_arrow_left" className="mdc-button__icon"/></Button>
-              <Caption><b>{post.voteScore} Votes</b></Caption>
-              <Button className="card-buttons" primary><Icon name="keyboard_arrow_right" className="mdc-button__icon"/></Button>
+              <PostVote postId={post.id} voteScore={post.voteScore} />
             </CardSubtitle>
           </CardHeader>
           <CardMedia
@@ -42,8 +41,8 @@ class PostCard extends Component {
                 <Button raised compact primary>Read more ...</Button>
               </Cell>
               <Cell col={6}>
-                <Button raised dense primary className="card-buttons"><Icon name="edit" className="mdc-button__icon"/></Button>
-                <Button raised dense primary className="card-buttons"><Icon name="delete" className="mdc-button__icon"/></Button>
+                <Button raised dense primary className="card-buttons"><Icon name="edit" className="mdc-button__icon" /></Button>
+                <Button raised dense primary className="card-buttons"><Icon name="delete" className="mdc-button__icon" /></Button>
               </Cell>
             </Grid>
           </CardActions>
