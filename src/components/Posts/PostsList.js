@@ -1,16 +1,19 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Title, Grid } from 'react-mdc-web/lib';
-import { Link, Route, withRouter } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
+import { fetchPosts } from '../../actions/index';
 import PostCard from './PostCard';
 
 class PostsList extends Component {
-  
   state = {
     sort: 'voteScore',
   }
-  
-  
+
+  componentDidMount() {
+    this.props.getPosts(this.props.match.path.replace('/', ''));
+  }
+
   sortPosts = (posts, method) => {
     let filteredPosts = posts;
     if (filteredPosts) {
@@ -20,13 +23,9 @@ class PostsList extends Component {
   }
 
   render() {
-    const { posts, match } = this.props;
+    const { posts } = this.props;
 
-    const category = ((match.params || '').category || '');
-    let filteredPosts = this.sortPosts(posts, this.state.sort);
-    if (category && posts) {
-      filteredPosts = posts.filter(post => post.category === category);
-    }
+    const filteredPosts = this.sortPosts(posts, this.state.sort);
 
     return (
       <main className="mdc-content posts-list">
@@ -46,4 +45,8 @@ const mapStateToProps = ({ global }) => ({
   posts: global.posts,
 });
 
-export default withRouter(connect(mapStateToProps)(PostsList));
+const mapDispatchToProps = dispatch => ({
+  getPosts: category => dispatch(fetchPosts(category)),
+});
+
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(PostsList));

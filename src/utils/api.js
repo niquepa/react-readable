@@ -12,11 +12,18 @@ export const getCategories = () => (
     .then(data => data.categories)
 );
 
-export const getPosts = () => (
-  fetch(`${api}/posts`, { headers })
+export const getPosts = (category) => {
+  if (category && category !== '/') {
+    console.log(`API getPosts: ${category}`);
+    return fetch(`${api}/${category}/posts`, { headers })
+      .then(res => res.json())
+      .then(data => data);
+  }
+
+  return fetch(`${api}/posts`, { headers })
     .then(res => res.json())
-    .then(data => data)
-);
+    .then(data => data);
+};
 
 export const getComments = postId => (
   fetch(`${api}/posts/${postId}/comments`, { headers })

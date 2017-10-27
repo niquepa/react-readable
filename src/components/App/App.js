@@ -6,24 +6,44 @@ import PostsList from '../Posts/PostsList';
 import 'material-components-web/dist/material-components-web.css';
 import 'material-design-icons/iconfont/material-icons.css';
 import '../../assets/css/App.css';
-import { fetchCategories, fetchPosts } from '../../actions/index';
+import { fetchCategories } from '../../actions/index';
 
 class App extends Component {
   componentDidMount() {
     this.props.fetchCategories();
-    this.props.fetchPosts();
   }
 
   render() {
     return (
       <main className="mdc-typography main">
         <Header />
-        <Route exact path="/:category" render={() => (
-          <PostsList />
-        )} />
-        <Route exact path="/" render={() => (
-          <PostsList />
-        )} />
+
+        <Route
+          path="/redux"
+          render={() => (
+            <PostsList />
+        )}
+        />
+        <Route
+          path="/react"
+          render={() => (
+            <PostsList />
+        )}
+        />
+        <Route
+          path="/udacity"
+          render={() => (
+            <PostsList />
+        )}
+        />
+
+        <Route
+          exact
+          path="/"
+          render={() => (
+            <PostsList />
+        )}
+        />
       </main>
     );
   }
@@ -35,7 +55,6 @@ const mapStateToProps = ({ global }) => ({
 
 const mapDispatchToProps = dispatch => ({
   fetchCategories: () => dispatch(fetchCategories()),
-  fetchPosts: ( category ) => dispatch(fetchPosts(category)),
 });
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(App));
