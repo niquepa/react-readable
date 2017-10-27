@@ -31,20 +31,6 @@ export const getPost = postId => (
     // .then(data => data);
 );
 
-
-export const getComments = postId => (
-  fetch(`${api}/posts/${postId}/comments`, { headers })
-    .then(res => res.json())
-);
-
-export const deleteComment = commentId => (
-  fetch(`${api}/comments/${commentId}`, {
-    headers,
-    method: 'delete',
-  })
-    .then(res => res.json())
-);
-
 export const votePost = (postId, body) => (
   fetch(`${api}/posts/${postId}`, {
     headers,
@@ -56,6 +42,28 @@ export const votePost = (postId, body) => (
 
 export const deletePost = postId => (
   fetch(`${api}/posts/${postId}`, {
+    headers,
+    method: 'delete',
+  })
+    .then(res => res.json())
+);
+
+export const getComments = postId => (
+  fetch(`${api}/posts/${postId}/comments`, { headers })
+    .then(res => res.json())
+);
+
+export const voteComment = (commentId, body) => (
+  fetch(`${api}/comments/${commentId}`, {
+    headers,
+    method: 'post',
+    body: JSON.stringify(body),
+  })
+    .then(res => res.json())
+);
+
+export const deleteComment = commentId => (
+  fetch(`${api}/comments/${commentId}`, {
     headers,
     method: 'delete',
   })

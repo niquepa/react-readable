@@ -2,10 +2,11 @@ import * as readableAPI from '../utils/api';
 
 export const RECEIVE_CATEGORIES = 'RECEIVE_CATEGORIES';
 export const RECEIVE_POSTS = 'RECEIVE_POSTS';
-export const RECEIVE_COMMENTS = 'RECEIVE_COMMENTS';
 export const RECEIVE_POST = 'RECEIVE_POST';
 // export const ADD_POST = 'ADD_POST';
 export const DELETE_POST = 'DELETE_POST';
+export const RECEIVE_COMMENTS = 'RECEIVE_COMMENTS';
+export const RECEIVE_COMMENT = 'RECEIVE_COMMENT';
 // export const ADD_COMMENT = 'ADD_COMMENT';
 export const DELETE_COMMENT = 'DELETE_COMMENT'
 
@@ -22,6 +23,11 @@ export const receivePosts = posts => ({
 export const receiveComments = (comments ) => ({
   type: RECEIVE_COMMENTS,
   comments,
+});
+
+export const receiveComment = (comment ) => ({
+  type: RECEIVE_COMMENT,
+  comment,
 });
 
 export const receivePost = post => ({
@@ -51,11 +57,7 @@ export const fetchPosts = category => dispatch => (
     .then(posts => dispatch(receivePosts(posts)))
 );
 
-export const fetchComments = postId => dispatch => (
-  readableAPI
-    .getComments(postId)
-    .then(comments => dispatch(receiveComments(comments)))
-);
+
 
 export const votePost = (postId, vote) => dispatch => (
   readableAPI
@@ -69,8 +71,22 @@ export const deletePost = postId => dispatch => (
     .then(post => dispatch(removePost(post.id)))
 );
 
+
+export const fetchComments = postId => dispatch => (
+  readableAPI
+    .getComments(postId)
+    .then(comments => dispatch(receiveComments(comments)))
+);
+
 export const deleteComment = commentId => dispatch => (
   readableAPI
     .deleteComment(commentId)
     .then(comment => dispatch(removeComment(comment.id)))
+);
+
+
+export const voteComment = (commentId, vote) => dispatch => (
+  readableAPI
+    .voteComment(commentId, vote)
+    .then(comment => dispatch(receiveComment(comment)))
 );
