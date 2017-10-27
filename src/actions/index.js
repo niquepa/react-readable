@@ -31,28 +31,28 @@ export const receivePost = post => ({
 
 export const fetchCategories = () => dispatch => (
   readableAPI
-    .fetchCategories()
+    .getCategories()
     .then(categories => dispatch(receiveCategories(categories)))
 );
 
-export const fetchPosts = () => dispatch => (
+export const fetchPosts = category => dispatch => (
   readableAPI
-    .fetchPosts()
+    .getPosts(category)
     .then(posts => dispatch(receivePosts(posts)))
 );
 
 export const fetchComments = postId => dispatch => (
   readableAPI
-    .fetchComments(postId)
+    .getComments(postId)
     .then(comments => dispatch(receiveComments(comments, postId)))
 );
 
-export const fetchPostAndComments = () => (dispatch, getState) => (
-  dispatch(fetchPosts())
-    .then(() => {
-      getState().global.posts.map(post => dispatch(fetchComments(post.id)));
-    })
-);
+// export const fetchPostAndComments = () => (dispatch, getState) => (
+//   dispatch(fetchPosts())
+//     .then(() => {
+//       getState().global.posts.map(post => dispatch(fetchComments(post.id)));
+//     })
+// );
 
 export const votePost = (postId, vote) => dispatch => (
   readableAPI

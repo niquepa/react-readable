@@ -6,12 +6,8 @@ import PostVote from './PostVote';
 
 class PostCard extends Component {
   render() {
-    const { post, comments } = this.props;
-
-    let postComments = ((comments || '')[post.id] || '');
-    if (postComments !== '') {
-      postComments = comments[post.id];
-    }
+    const { post } = this.props;
+    
     return (
       <Cell col={4} tablet={6} phone={12} key={post.id}>
         <Card className="post-card" key={post.id}>
@@ -21,7 +17,7 @@ class PostCard extends Component {
               by <b>{post.author}</b> in <Link to={post.category}>{post.category}</Link>
             </CardSubtitle>
             <CardSubtitle>
-              <b>{postComments.length}</b> Comments |
+              <b>{post.commentCount}</b> Comments |
               <PostVote postId={post.id} voteScore={post.voteScore} />
             </CardSubtitle>
           </CardHeader>

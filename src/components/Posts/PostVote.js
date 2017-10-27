@@ -20,7 +20,7 @@ class PostVote extends Component {
           <Icon name="keyboard_arrow_left" className="mdc-button__icon" />
         </Button>
         <Caption><b>{voteScore} Votes</b></Caption>
-        <Button className="card-buttons" primary>
+        <Button className="card-buttons" primary onClick={() => this.addVote('upVote')}>
           <Icon name="keyboard_arrow_right" className="mdc-button__icon" />
         </Button>
       </span>

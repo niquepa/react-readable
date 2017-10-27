@@ -6,19 +6,19 @@ const headers = {
   Authorization: token,
 };
 
-export const fetchCategories = () => (
+export const getCategories = () => (
   fetch(`${api}/categories`, { headers })
     .then(res => res.json())
     .then(data => data.categories)
 );
 
-export const fetchPosts = () => (
+export const getPosts = () => (
   fetch(`${api}/posts`, { headers })
     .then(res => res.json())
     .then(data => data)
 );
 
-export const fetchComments = postId => (
+export const getComments = postId => (
   fetch(`${api}/posts/${postId}/comments`, { headers })
     .then(res => res.json())
 );
