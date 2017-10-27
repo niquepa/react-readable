@@ -22,11 +22,11 @@ class PostsList extends Component {
   render() {
     const { posts, match } = this.props;
 
-    //const category = ((match.params || '').category || '');
+    const category = ((match.params || '').category || '');
     let filteredPosts = this.sortPosts(posts, this.state.sort);
-    // if (category && posts) {
-    //   filteredPosts = posts.filter(post => post.category === category);
-    // }
+    if (category && posts) {
+      filteredPosts = posts.filter(post => post.category === category);
+    }
 
     return (
       <main className="mdc-content posts-list">
