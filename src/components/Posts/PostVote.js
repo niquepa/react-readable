@@ -5,10 +5,8 @@ import { Button, Icon, Caption } from 'react-mdc-web/lib';
 import { votePost } from '../../actions/index';
 
 class PostVote extends Component {
-  
   addVote = (vote) => {
-    console.log(`VOTE:${vote}`)
-    this.props.votePost(this.props.postId, {option: vote});
+    this.props.votePost(this.props.postId, { option: vote });
   }
 
   render() {

@@ -1,5 +1,8 @@
 import { combineReducers } from 'redux';
-import { DELETE_POST, RECEIVE_CATEGORIES, RECEIVE_COMMENTS, RECEIVE_POST, RECEIVE_POSTS } from '../actions/index';
+import {
+  DELETE_POST, RECEIVE_CATEGORIES, RECEIVE_COMMENTS, RECEIVE_POST,
+  RECEIVE_POSTS,
+} from '../actions/index';
 
 const global = (state = {}, action) => {
   switch (action.type) {
@@ -28,16 +31,15 @@ const global = (state = {}, action) => {
         },
       };
     case RECEIVE_POST:
-      let postsNew = state.posts.filter(item => item.id !== action.post.id).concat(action.post);
       return {
         ...state,
-        posts: postsNew
+        posts: state.posts.filter(item => item.id !== action.post.id).concat(action.post),
       };
     case DELETE_POST:
       return {
         ...state,
-        posts: state.posts.filter(item => item.id !== action.post)
-      }
+        posts: state.posts.filter(item => item.id !== action.post),
+      };
     default:
       return state;
   }

@@ -31,8 +31,8 @@ export const receivePost = post => ({
 
 export const removePost = post => ({
   type: DELETE_POST,
-  post
-})
+  post,
+});
 
 export const fetchCategories = () => dispatch => (
   readableAPI
@@ -58,8 +58,8 @@ export const votePost = (postId, vote) => dispatch => (
     .then(post => dispatch(receivePost(post)))
 );
 
-export const deletePost = (postId) => dispatch => (
+export const deletePost = postId => dispatch => (
   readableAPI
     .deletePost(postId)
     .then(post => dispatch(removePost(post.id)))
-)
+);
