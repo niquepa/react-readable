@@ -10,6 +10,14 @@ class PostCard extends Component {
     this.props.deletePost(post.id);
   }
 
+  summary = (str) => {
+    if (str.length > 50) {
+      return str.substr(0, 50);
+    }
+
+    return str;
+  }
+
   render() {
     const { post } = this.props;
 
@@ -34,12 +42,12 @@ class PostCard extends Component {
             }}
           />
           <CardText>
-            {post.body}
+            {this.summary(post.body)}
           </CardText>
           <CardActions>
             <Grid>
               <Cell col={6}>
-                <Button raised compact primary>Read more ...</Button>
+                <Button raised compact primary><Link to={`/${post.category}/${post.id}`}>Read more ...</Link></Button>
               </Cell>
               <Cell col={6}>
                 <Button raised dense primary className="card-buttons"><Icon name="edit" className="mdc-button__icon" /></Button>

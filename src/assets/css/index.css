@@ -16,6 +16,10 @@ body{
   flex: 1;
 }
 
+.post-detail {
+  margin-top: 64px;
+}
+
 .main {
   display: flex;
   flex-direction: column;

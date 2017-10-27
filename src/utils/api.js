@@ -25,8 +25,23 @@ export const getPosts = (category) => {
     .then(data => data);
 };
 
+export const getPost = postId => (
+  fetch(`${api}/posts/${postId}`, { headers })
+    .then(res => res.json())
+    // .then(data => data);
+);
+
+
 export const getComments = postId => (
   fetch(`${api}/posts/${postId}/comments`, { headers })
+    .then(res => res.json())
+);
+
+export const deleteComment = commentId => (
+  fetch(`${api}/comments/${commentId}`, {
+    headers,
+    method: 'delete',
+  })
     .then(res => res.json())
 );
 
@@ -45,4 +60,4 @@ export const deletePost = postId => (
     method: 'delete',
   })
     .then(res => res.json())
-)
+);

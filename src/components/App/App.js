@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import Header from '../Shared/Header';
 import { withRouter, Route } from 'react-router-dom';
 import PostsList from '../Posts/PostsList';
+import PostDetail from '../Posts/PostDetail';
 import 'material-components-web/dist/material-components-web.css';
 import 'material-design-icons/iconfont/material-icons.css';
 import '../../assets/css/App.css';
@@ -20,22 +21,32 @@ class App extends Component {
 
         <Route
           path="/redux"
+          exact
           render={() => (
             <PostsList />
         )}
         />
         <Route
           path="/react"
+          exact
           render={() => (
             <PostsList />
         )}
         />
         <Route
           path="/udacity"
+          exact
           render={() => (
             <PostsList />
         )}
         />
+
+        <Route exact path="/:categoryId/:postId" render={({match}) => (
+            <PostDetail
+              postId={match.params.postId}
+              category={match.params.categoryId}
+            />
+        )}/>
 
         <Route
           exact

@@ -7,6 +7,7 @@ export const RECEIVE_POST = 'RECEIVE_POST';
 // export const ADD_POST = 'ADD_POST';
 export const DELETE_POST = 'DELETE_POST';
 // export const ADD_COMMENT = 'ADD_COMMENT';
+export const DELETE_COMMENT = 'DELETE_COMMENT'
 
 export const receiveCategories = categories => ({
   type: RECEIVE_CATEGORIES,
@@ -18,10 +19,9 @@ export const receivePosts = posts => ({
   posts,
 });
 
-export const receiveComments = (comments, postId) => ({
+export const receiveComments = (comments ) => ({
   type: RECEIVE_COMMENTS,
   comments,
-  postId,
 });
 
 export const receivePost = post => ({
@@ -33,6 +33,11 @@ export const removePost = post => ({
   type: DELETE_POST,
   post,
 });
+
+export const removeComment = comment => ({
+  type: DELETE_COMMENT,
+  comment
+})
 
 export const fetchCategories = () => dispatch => (
   readableAPI
@@ -49,7 +54,7 @@ export const fetchPosts = category => dispatch => (
 export const fetchComments = postId => dispatch => (
   readableAPI
     .getComments(postId)
-    .then(comments => dispatch(receiveComments(comments, postId)))
+    .then(comments => dispatch(receiveComments(comments)))
 );
 
 export const votePost = (postId, vote) => dispatch => (
@@ -62,4 +67,10 @@ export const deletePost = postId => dispatch => (
   readableAPI
     .deletePost(postId)
     .then(post => dispatch(removePost(post.id)))
+);
+
+export const deleteComment = commentId => dispatch => (
+  readableAPI
+    .deleteComment(commentId)
+    .then(comment => dispatch(removeComment(comment.id)))
 );

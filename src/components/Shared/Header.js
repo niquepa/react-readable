@@ -24,7 +24,7 @@ class Header extends Component {
                 path={`/${category.path}`}
                 children={({ match }) => (
                   <Tab active={!!match} key={category.path} component="span">
-                    <Link to={category.path} className="header-link">{category.name}</Link>
+                    <Link to={`/${category.path}`} className="header-link">{category.name}</Link>
                   </Tab>
               )}
               />

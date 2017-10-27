@@ -10,7 +10,7 @@ class PostVote extends Component {
   }
 
   render() {
-    const { postId, voteScore } = this.props;
+    const { voteScore } = this.props;
 
     return (
       <span>
