@@ -57,7 +57,11 @@ export const fetchPosts = category => dispatch => (
     .then(posts => dispatch(receivePosts(posts)))
 );
 
-
+export const fetchPost = postId => dispatch => (
+  readableAPI
+    .getPost(postId)
+    .then(post => dispatch(receivePost(post)))
+);
 
 export const votePost = (postId, vote) => dispatch => (
   readableAPI
