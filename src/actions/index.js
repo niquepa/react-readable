@@ -5,7 +5,7 @@ export const RECEIVE_POSTS = 'RECEIVE_POSTS';
 export const RECEIVE_COMMENTS = 'RECEIVE_COMMENTS';
 export const RECEIVE_POST = 'RECEIVE_POST';
 // export const ADD_POST = 'ADD_POST';
-// export const DELETE_POST = 'DELETE_POST';
+export const DELETE_POST = 'DELETE_POST';
 // export const ADD_COMMENT = 'ADD_COMMENT';
 
 export const receiveCategories = categories => ({
@@ -29,6 +29,11 @@ export const receivePost = post => ({
   post,
 });
 
+export const removePost = post => ({
+  type: DELETE_POST,
+  post
+})
+
 export const fetchCategories = () => dispatch => (
   readableAPI
     .getCategories()
@@ -47,15 +52,14 @@ export const fetchComments = postId => dispatch => (
     .then(comments => dispatch(receiveComments(comments, postId)))
 );
 
-// export const fetchPostAndComments = () => (dispatch, getState) => (
-//   dispatch(fetchPosts())
-//     .then(() => {
-//       getState().global.posts.map(post => dispatch(fetchComments(post.id)));
-//     })
-// );
-
 export const votePost = (postId, vote) => dispatch => (
   readableAPI
     .votePost(postId, vote)
     .then(post => dispatch(receivePost(post)))
 );
+
+export const deletePost = (postId) => dispatch => (
+  readableAPI
+    .deletePost(postId)
+    .then(post => dispatch(removePost(post.id)))
+)

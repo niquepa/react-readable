@@ -3,11 +3,16 @@ import { connect } from 'react-redux';
 import { Link, withRouter } from 'react-router-dom';
 import { Card, CardHeader, CardTitle, CardSubtitle, CardMedia, CardText, CardActions, Button, Icon, Grid, Cell, Caption, Title } from 'react-mdc-web/lib';
 import PostVote from './PostVote';
+import { deletePost } from '../../actions/index';
 
 class PostCard extends Component {
+  removePost = (post) => {
+    this.props.deletePost(post.id);
+  }
+
   render() {
     const { post } = this.props;
-    
+
     return (
       <Cell col={4} tablet={6} phone={12} key={post.id}>
         <Card className="post-card" key={post.id}>
@@ -38,7 +43,7 @@ class PostCard extends Component {
               </Cell>
               <Cell col={6}>
                 <Button raised dense primary className="card-buttons"><Icon name="edit" className="mdc-button__icon" /></Button>
-                <Button raised dense primary className="card-buttons"><Icon name="delete" className="mdc-button__icon" /></Button>
+                <Button raised dense primary className="card-buttons" onClick={() => this.removePost(post)}><Icon name="delete" className="mdc-button__icon" /></Button>
               </Cell>
             </Grid>
           </CardActions>
@@ -49,11 +54,12 @@ class PostCard extends Component {
 }
 
 const mapStateToProps = ({ global }) => ({
-  comments: global.comments,
+  // comments: global.comments,
 });
 
 const mapDispatchToProps = dispatch => ({
   // fetchComments: post => dispatch(fetchComments(post)),
+  deletePost: post => dispatch(deletePost(post)),
 });
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(PostCard));
