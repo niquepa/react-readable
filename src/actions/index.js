@@ -2,13 +2,14 @@ import * as readableAPI from '../utils/api';
 
 export const RECEIVE_CATEGORIES = 'RECEIVE_CATEGORIES';
 export const RECEIVE_POSTS = 'RECEIVE_POSTS';
+export const UPDATE_POST = 'UPDATE_POST';
 export const RECEIVE_POST = 'RECEIVE_POST';
 // export const ADD_POST = 'ADD_POST';
 export const DELETE_POST = 'DELETE_POST';
 export const RECEIVE_COMMENTS = 'RECEIVE_COMMENTS';
 export const RECEIVE_COMMENT = 'RECEIVE_COMMENT';
 // export const ADD_COMMENT = 'ADD_COMMENT';
-export const DELETE_COMMENT = 'DELETE_COMMENT'
+export const DELETE_COMMENT = 'DELETE_COMMENT';
 
 export const receiveCategories = categories => ({
   type: RECEIVE_CATEGORIES,
@@ -20,18 +21,13 @@ export const receivePosts = posts => ({
   posts,
 });
 
-export const receiveComments = (comments ) => ({
-  type: RECEIVE_COMMENTS,
-  comments,
-});
-
-export const receiveComment = (comment ) => ({
-  type: RECEIVE_COMMENT,
-  comment,
-});
-
 export const receivePost = post => ({
   type: RECEIVE_POST,
+  post,
+});
+
+export const updatePost = post => ({
+  type: UPDATE_POST,
   post,
 });
 
@@ -40,10 +36,20 @@ export const removePost = post => ({
   post,
 });
 
+export const receiveComments = comments => ({
+  type: RECEIVE_COMMENTS,
+  comments,
+});
+
+export const receiveComment = comment => ({
+  type: RECEIVE_COMMENT,
+  comment,
+});
+
 export const removeComment = comment => ({
   type: DELETE_COMMENT,
-  comment
-})
+  comment,
+});
 
 export const fetchCategories = () => dispatch => (
   readableAPI
@@ -66,7 +72,7 @@ export const fetchPost = postId => dispatch => (
 export const votePost = (postId, vote) => dispatch => (
   readableAPI
     .votePost(postId, vote)
-    .then(post => dispatch(receivePost(post)))
+    .then(post => dispatch(updatePost(post)))
 );
 
 export const deletePost = postId => dispatch => (
