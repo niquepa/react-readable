@@ -31,6 +31,15 @@ export const getPost = postId => (
     // .then(data => data);
 );
 
+export const editPost = (postId, body) => (
+  fetch(`${api}/posts/${postId}`, {
+    headers,
+    method: 'put',
+    body: JSON.stringify(body),
+  })
+    .then(res => res.json())
+);
+
 export const votePost = (postId, body) => (
   fetch(`${api}/posts/${postId}`, {
     headers,

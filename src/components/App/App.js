@@ -4,6 +4,7 @@ import Header from '../Shared/Header';
 import { withRouter, Route } from 'react-router-dom';
 import PostsList from '../Posts/PostsList';
 import PostDetail from '../Posts/PostDetail';
+import PostDetailEdit from '../Posts/PostDetailEdit';
 import 'material-components-web/dist/material-components-web.css';
 import 'material-design-icons/iconfont/material-icons.css';
 import '../../assets/css/App.css';
@@ -41,12 +42,35 @@ class App extends Component {
         )}
         />
 
-        <Route exact path="/:categoryId/:postId" render={({match}) => (
+        <Route
+          exact
+          path="/:categoryId/:postId"
+          render={({ match }) => (
             <PostDetail
               postId={match.params.postId}
               category={match.params.categoryId}
             />
-        )}/>
+        )}
+        />
+
+        <Route
+          exact
+          path="/:categoryId/:postId/edit"
+          render={({ match }) => (
+            <PostDetailEdit
+              postId={match.params.postId}
+              category={match.params.categoryId}
+            />
+        )}
+        />
+
+        {/* <Route */}
+        {/* exact */}
+        {/* path="/new" */}
+        {/* render={({ match }) => ( */}
+        {/* <PostDetailNew /> */}
+        {/* )} */}
+        {/* /> */}
 
         <Route
           exact

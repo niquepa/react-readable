@@ -47,10 +47,10 @@ class PostCard extends Component {
           <CardActions>
             <Grid>
               <Cell col={6}>
-                <Button raised compact primary><Link to={`/${post.category}/${post.id}`}>Read more ...</Link></Button>
+                <Link to={`/${post.category}/${post.id}`}><Button raised compact primary>Read more ...</Button></Link>
               </Cell>
               <Cell col={6}>
-                <Button raised dense primary className="card-buttons"><Icon name="edit" className="mdc-button__icon" /></Button>
+                <Link to={`/${post.category}/${post.id}/edit`}><Button raised dense primary className="card-buttons"><Icon name="edit" className="mdc-button__icon" /></Button></Link>
                 <Button raised dense primary className="card-buttons" onClick={() => this.removePost(post)}><Icon name="delete" className="mdc-button__icon" /></Button>
               </Cell>
             </Grid>

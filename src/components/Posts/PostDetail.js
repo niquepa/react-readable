@@ -29,8 +29,8 @@ class PostDetail extends Component {
           <Subheading2>by <b>{post.author}</b> in <Link to={`/${post.category}`}>{post.category}</Link> | <b>{post.commentCount}</b> Comments</Subheading2>
           <PostVote postId={post.id} voteScore={post.voteScore} />
           <Body1>{post.body}</Body1>
-          <Button raised dense primary className="card-buttons"><Icon name="edit" className="mdc-button__icon" /></Button>
-          <Button raised dense primary className="card-buttons" onClick={() => this.removePost(post)}><Icon name="delete" className="mdc-button__icon" /></Button>
+          <Link to={`/${post.category}/${post.id}/edit`}><Button raised dense primary><Icon name="edit" className="mdc-button__icon" /></Button></Link>
+          <Button raised dense primary onClick={() => this.removePost(post)}><Icon name="delete" className="mdc-button__icon" /></Button>
           <CommentsList postId={this.props.postId} />
         </main>
       )}
