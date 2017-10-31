@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Redirect, withRouter } from 'react-router-dom';
-import { Title, Subheading2, Body1, Button, Icon, Cell, Textfield, Grid, RadioGroup, Radio } from 'react-mdc-web/lib';
+import { Title, Button, Icon, Cell, Textfield, Grid, RadioGroup, Radio } from 'react-mdc-web/lib';
 import { deletePost, fetchPost, editPost } from '../../actions/index';
-import * as readableAPI from '../../utils/api';
 
 class PostDetailEdit extends Component {
   constructor(props) {
@@ -13,7 +12,7 @@ class PostDetailEdit extends Component {
       author: '',
       body: '',
       category: '',
-      submitted: false,
+      redirect: '',
     };
 
     this.handleInputChange = this.handleInputChange.bind(this);
@@ -32,9 +31,10 @@ class PostDetailEdit extends Component {
 
   removePost = (post) => {
     this.props.deletePost(post.id);
-    this.props.router.push('/');
+    // this.props.history.push('/');
+    // this.redirectTo('/');
+    this.setState({ redirect: '/' });
   }
-
 
   assignState = (post) => {
     if (post) {
@@ -66,20 +66,29 @@ class PostDetailEdit extends Component {
       category: this.state.category,
     });
     // .then(this.setState({ submmited: true }));
-    this.setState({ submitted: true });
+    // this.setState({ submitted: true });
+    // this.redirectTo();
+    this.setState({ redirect: `/${this.state.category}/${this.props.postId}` });
+  }
+
+  redirectTo = (url) => {
+    this.setState({ redirect: url });
   }
 
   render() {
-    const { post, postId, category, categories } = this.props;
-    const { submitted } = this.state;
+    const {
+      post, postId, category, categories,
+    } = this.props;
+    const { redirect } = this.state;
 
 
     return (
       <main className="mdc-content post-detail">
-        { submitted && (
-          <Redirect to={`/${this.state.category}/${post.id}`}/>
+        { redirect && (
+          <Redirect to={redirect} />
         )}
-        <Title>{JSON.stringify(post)} - {JSON.stringify(this.state.submitted)}</Title>
+        {/* <Title>{JSON.stringify(post)} - {JSON.stringify(this.state.submitted)}</Title> */}
+        <Title>{JSON.stringify(this.props.history)}</Title>
         { post &&
         <form onSubmit={this.handleSubmit}>
           <Grid>
@@ -101,6 +110,7 @@ class PostDetailEdit extends Component {
                 required
                 value={this.state.title}
                 onChange={this.handleInputChange}
+                className="mdc-textfield--fullwidth"
               />
               <Textfield
                 name="author"
@@ -108,23 +118,28 @@ class PostDetailEdit extends Component {
                 required
                 value={this.state.author}
                 onChange={this.handleInputChange}
+                className="mdc-textfield--fullwidth"
               />
             </Cell>
             <Cell col={12}>
-              <Textfield
-                name="body"
-                floatingLabel="Your post body"
-                textarea="textarea"
-                rows="10"
-                cols="100"
-                required
-                value={this.state.body}
-                onChange={this.handleInputChange}
-              />
+              <Title>Post body:</Title>
+              <div className="mdc-textfield mdc-textfield--textarea mdc-textfield--fullwidth mdc-textfield--upgraded">
+                <textarea
+                  id="post-body"
+                  name="body"
+                  required
+                  className="mdc-textfield__input"
+                  rows="20"
+                  value={this.state.body}
+                  onChange={this.handleInputChange}
+                />
+              </div>
+
             </Cell>
           </Grid>
           <Button raised dense primary type="submit" value="submit"><Icon name="save" className="mdc-button__icon" /></Button>
           <Button raised dense primary onClick={() => this.removePost(post)}><Icon name="delete" className="mdc-button__icon" /></Button>
+          <Button raised dense primary onClick={() => { this.props.history.goBack; }}><Icon name="cancel" className="mdc-button__icon" /></Button>
         </form>
         }
       </main>
