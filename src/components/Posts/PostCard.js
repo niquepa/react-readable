@@ -51,7 +51,6 @@ class PostCard extends Component {
               </Cell>
               <Cell col={6}>
                 <Link to={`/${post.category}/${post.id}/edit`}><Button raised dense primary className="card-buttons"><Icon name="edit" className="mdc-button__icon" /></Button></Link>
-                <Button raised dense primary className="card-buttons" onClick={() => this.removePost(post)}><Icon name="delete" className="mdc-button__icon" /></Button>
               </Cell>
             </Grid>
           </CardActions>

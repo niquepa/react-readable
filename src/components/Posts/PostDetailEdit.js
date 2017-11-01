@@ -12,7 +12,6 @@ class PostDetailEdit extends Component {
       author: '',
       body: '',
       category: '',
-      redirect: '',
     };
 
     this.handleInputChange = this.handleInputChange.bind(this);
@@ -31,9 +30,7 @@ class PostDetailEdit extends Component {
 
   removePost = (post) => {
     this.props.deletePost(post.id);
-    // this.props.history.push('/');
-    // this.redirectTo('/');
-    this.setState({ redirect: '/' });
+    this.props.history.push('/');
   }
 
   assignState = (post) => {
@@ -65,14 +62,7 @@ class PostDetailEdit extends Component {
       body: this.state.body,
       category: this.state.category,
     });
-    // .then(this.setState({ submmited: true }));
-    // this.setState({ submitted: true });
-    // this.redirectTo();
-    this.setState({ redirect: `/${this.state.category}/${this.props.postId}` });
-  }
-
-  redirectTo = (url) => {
-    this.setState({ redirect: url });
+    this.props.history.push(`/${this.state.category}/${this.props.postId}`);
   }
 
   render() {
@@ -137,9 +127,9 @@ class PostDetailEdit extends Component {
 
             </Cell>
           </Grid>
-          <Button raised dense primary type="submit" value="submit"><Icon name="save" className="mdc-button__icon" /></Button>
-          <Button raised dense primary onClick={() => this.removePost(post)}><Icon name="delete" className="mdc-button__icon" /></Button>
-          <Button raised dense primary onClick={() => { this.props.history.goBack; }}><Icon name="cancel" className="mdc-button__icon" /></Button>
+          <Button raised dense primary type="submit" ><Icon name="save" className="mdc-button__icon" /></Button>
+          <Button raised dense primary type="button" onClick={() => this.removePost(post)}><Icon name="delete" className="mdc-button__icon" /></Button>
+          <Button raised dense primary type="button" onClick={this.props.history.goBack}><Icon name="cancel" className="mdc-button__icon" /></Button>
         </form>
         }
       </main>

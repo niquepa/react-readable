@@ -30,7 +30,6 @@ class PostDetail extends Component {
           <PostVote postId={post.id} voteScore={post.voteScore} />
           <Body1>{post.body}</Body1>
           <Link to={`/${post.category}/${post.id}/edit`}><Button raised dense primary><Icon name="edit" className="mdc-button__icon" /></Button></Link>
-          <Button raised dense primary onClick={() => this.removePost(post)}><Icon name="delete" className="mdc-button__icon" /></Button>
           <CommentsList postId={this.props.postId} />
         </main>
       )}
