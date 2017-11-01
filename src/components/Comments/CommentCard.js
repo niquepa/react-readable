@@ -65,7 +65,6 @@ class CommentCard extends Component {
             <Grid>
               <Cell col={12}>
                 <Button raised dense primary className="card-buttons" onClick={() => { this.setState({ isOpen: true }); }}><Icon name="edit" className="mdc-button__icon" /> Edit</Button>
-                {/* <Button raised dense primary className="card-buttons" onClick={() => this.deleteComment(comment)}><Icon name="delete" className="mdc-button__icon" /> Delete</Button> */}
                 <Button raised dense primary className="card-buttons" onClick={() => { this.setState({ isOpenDelete: true }); }}><Icon name="delete" className="mdc-button__icon" /> Delete</Button>
               </Cell>
             </Grid>
@@ -80,7 +79,7 @@ class CommentCard extends Component {
           </DialogHeader>
           <DialogBody>
             {comment &&
-            <form onSubmit={this.handleSubmit}>
+            <form>
               <Grid>
                 <Cell col={12}>
                   <Textfield

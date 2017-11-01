@@ -76,6 +76,15 @@ export const voteComment = (commentId, body) => (
     .then(res => res.json())
 );
 
+export const newComment = (body) => (
+  fetch(`${api}/comments`, {
+    headers,
+    method: 'post',
+    body: JSON.stringify(body),
+  })
+    .then(res => res.json())
+);
+
 export const editComment = (commentId, body) => (
   fetch(`${api}/comments/${commentId}`, {
     headers,
@@ -91,5 +100,4 @@ export const deleteComment = commentId => (
     method: 'delete',
   })
     .then(res => res.json())
-    .then(data => {return data})
 );

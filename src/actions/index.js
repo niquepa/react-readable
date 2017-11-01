@@ -106,6 +106,19 @@ export const fetchComment = commentId => dispatch => (
     .then(comment => dispatch(receiveComment(comment)))
 );
 
+export const newComment = body => dispatch => (
+  readableAPI
+    .newComment(body)
+    .then(comment => dispatch(updateComment(comment)))
+);
+
+export const newCommentFetchPost = body => dispatch => (
+  dispatch(newComment(body))
+    .then(() => {
+      dispatch(fetchPost(body.parentId));
+    })
+);
+
 export const editComment = (commentId, body) => dispatch => (
   readableAPI
     .editComment(commentId, body)
@@ -127,7 +140,6 @@ export const deleteComment = commentId => dispatch => (
 export const deleteCommentFetchPost = comment => dispatch => (
   dispatch(deleteComment(comment.id))
     .then(() => {
-      console.log(`DISPATCH COMMENT DELETED; ${JSON.stringify(comment)}`);
       dispatch(fetchPost(comment.parentId));
     })
 );
