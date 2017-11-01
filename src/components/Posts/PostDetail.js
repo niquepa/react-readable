@@ -12,10 +12,6 @@ class PostDetail extends Component {
     this.props.getPost(this.props.postId);
   }
 
-  removePost = (post) => {
-    this.props.deletePost(post.id);
-  }
-
   render() {
     const { post, postId, Category } = this.props;
 

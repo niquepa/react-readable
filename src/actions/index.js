@@ -79,7 +79,7 @@ export const editPost = (postId, body) => dispatch => (
   readableAPI
     .editPost(postId, body)
     .then(post => dispatch(receivePost(post)))
-)
+);
 
 export const votePost = (postId, vote) => dispatch => (
   readableAPI
@@ -109,8 +109,8 @@ export const fetchComment = commentId => dispatch => (
 export const editComment = (commentId, body) => dispatch => (
   readableAPI
     .editComment(commentId, body)
-    .then(comment => dispatch(receiveComment(comment)))
-)
+    .then(comment => dispatch(updateComment(comment)))
+);
 
 export const voteComment = (commentId, vote) => dispatch => (
   readableAPI
@@ -122,4 +122,12 @@ export const deleteComment = commentId => dispatch => (
   readableAPI
     .deleteComment(commentId)
     .then(comment => dispatch(removeComment(comment.id)))
+);
+
+export const deleteCommentFetchPost = comment => dispatch => (
+  dispatch(deleteComment(comment.id))
+    .then(() => {
+      console.log(`DISPATCH COMMENT DELETED; ${JSON.stringify(comment)}`);
+      dispatch(fetchPost(comment.parentId));
+    })
 );

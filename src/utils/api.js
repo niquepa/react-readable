@@ -91,4 +91,5 @@ export const deleteComment = commentId => (
     method: 'delete',
   })
     .then(res => res.json())
+    .then(data => {return data})
 );
