@@ -31,6 +31,15 @@ export const getPost = postId => (
     // .then(data => data);
 );
 
+export const newPost = (body) => (
+  fetch(`${api}/posts`, {
+    headers,
+    method: 'post',
+    body: JSON.stringify(body),
+  })
+    .then(res => res.json())
+);
+
 export const editPost = (postId, body) => (
   fetch(`${api}/posts/${postId}`, {
     headers,

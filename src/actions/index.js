@@ -75,6 +75,12 @@ export const fetchPost = postId => dispatch => (
     .then(post => dispatch(receivePost(post)))
 );
 
+export const newPost = body => dispatch => (
+  readableAPI
+    .newPost(body)
+    .then(post => dispatch(updatePost(post)))
+);
+
 export const editPost = (postId, body) => dispatch => (
   readableAPI
     .editPost(postId, body)
