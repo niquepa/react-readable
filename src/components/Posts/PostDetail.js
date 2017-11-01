@@ -5,7 +5,6 @@ import { Title, Subheading2, Body1, Button, Icon } from 'react-mdc-web/lib';
 import PostVote from './PostVote';
 import CommentsList from '../Comments/CommentsList';
 import { deletePost, fetchPost } from '../../actions/index';
-import * as readableAPI from '../../utils/api';
 
 class PostDetail extends Component {
   

@@ -2,7 +2,7 @@ import { combineReducers } from 'redux';
 import {
   DELETE_COMMENT,
   DELETE_POST, RECEIVE_CATEGORIES, RECEIVE_COMMENTS, RECEIVE_POST,
-  RECEIVE_POSTS, RECEIVE_COMMENT, UPDATE_POST
+  RECEIVE_POSTS, RECEIVE_COMMENT, UPDATE_POST, UPDATE_COMMENT,
 } from '../actions/index';
 
 const global = (state = {}, action) => {
@@ -35,10 +35,15 @@ const global = (state = {}, action) => {
         ...state,
         comments,
       };
-    case RECEIVE_COMMENT:
+    case UPDATE_COMMENT:
       return {
         ...state,
         comments: state.comments.filter(item => item.id !== action.comment.id).concat(action.comment),
+      };
+    case RECEIVE_COMMENT:
+      return {
+        ...state,
+        comment: action.comment,
       };
     case DELETE_COMMENT:
       return {

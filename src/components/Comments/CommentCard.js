@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link, withRouter } from 'react-router-dom';
 import { Card, CardHeader, CardTitle, CardSubtitle, CardMedia, CardText, CardActions, Button, Icon, Grid, Cell, Caption, Title } from 'react-mdc-web/lib';
-// import PostVote from './PostVote';
 import CommentVote from './CommentVote'
 import { deleteComment } from '../../actions/index';
 
@@ -10,14 +9,6 @@ class CommentCard extends Component {
   deleteComment = (comment) => {
     this.props.deleteComment(comment.id);
   }
-  //
-  // summary = (str) => {
-  //   if (str.length > 50) {
-  //     return str.substr(0, 50);
-  //   }
-  //
-  //   return str;
-  // }
 
   render() {
     const { comment } = this.props;
@@ -40,7 +31,7 @@ class CommentCard extends Component {
           <CardActions>
             <Grid>
               <Cell col={12}>
-                <Button raised dense primary className="card-buttons"><Icon name="edit" className="mdc-button__icon" /></Button>
+                <Link to={`/${comment.parentID}/${comment.id}/editComment`}><Button raised dense primary className="card-buttons"><Icon name="edit" className="mdc-button__icon" /></Button></Link>
                 <Button raised dense primary className="card-buttons" onClick={() => this.deleteComment(comment)}><Icon name="delete" className="mdc-button__icon" /></Button>
               </Cell>
             </Grid>

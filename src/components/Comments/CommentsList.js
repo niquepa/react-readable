@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Title, Grid, RadioGroup, Radio } from 'react-mdc-web/lib';
-import { withRouter } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import { fetchComments } from '../../actions/index';
 import CommentCard from './CommentCard';
 

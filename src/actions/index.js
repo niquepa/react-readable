@@ -7,6 +7,7 @@ export const RECEIVE_POST = 'RECEIVE_POST';
 // export const ADD_POST = 'ADD_POST';
 export const DELETE_POST = 'DELETE_POST';
 export const RECEIVE_COMMENTS = 'RECEIVE_COMMENTS';
+export const UPDATE_COMMENT = 'UPDATE_COMMENT';
 export const RECEIVE_COMMENT = 'RECEIVE_COMMENT';
 // export const ADD_COMMENT = 'ADD_COMMENT';
 export const DELETE_COMMENT = 'DELETE_COMMENT';
@@ -39,6 +40,11 @@ export const removePost = post => ({
 export const receiveComments = comments => ({
   type: RECEIVE_COMMENTS,
   comments,
+});
+
+export const updateComment = comment => ({
+  type: UPDATE_COMMENT,
+  comment,
 });
 
 export const receiveComment = comment => ({
@@ -94,15 +100,26 @@ export const fetchComments = postId => dispatch => (
     .then(comments => dispatch(receiveComments(comments)))
 );
 
-export const deleteComment = commentId => dispatch => (
+export const fetchComment = commentId => dispatch => (
   readableAPI
-    .deleteComment(commentId)
-    .then(comment => dispatch(removeComment(comment.id)))
+    .getComment(commentId)
+    .then(comment => dispatch(receiveComment(comment)))
 );
 
+export const editComment = (commentId, body) => dispatch => (
+  readableAPI
+    .editComment(commentId, body)
+    .then(comment => dispatch(receiveComment(comment)))
+)
 
 export const voteComment = (commentId, vote) => dispatch => (
   readableAPI
     .voteComment(commentId, vote)
-    .then(comment => dispatch(receiveComment(comment)))
+    .then(comment => dispatch(updateComment(comment)))
+);
+
+export const deleteComment = commentId => dispatch => (
+  readableAPI
+    .deleteComment(commentId)
+    .then(comment => dispatch(removeComment(comment.id)))
 );

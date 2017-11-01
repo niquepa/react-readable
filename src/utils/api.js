@@ -62,10 +62,24 @@ export const getComments = postId => (
     .then(res => res.json())
 );
 
+export const getComment = commentId => (
+  fetch(`${api}/comments/${commentId}`, { headers })
+    .then(res => res.json())
+);
+
 export const voteComment = (commentId, body) => (
   fetch(`${api}/comments/${commentId}`, {
     headers,
     method: 'post',
+    body: JSON.stringify(body),
+  })
+    .then(res => res.json())
+);
+
+export const editComment = (commentId, body) => (
+  fetch(`${api}/comments/${commentId}`, {
+    headers,
+    method: 'put',
     body: JSON.stringify(body),
   })
     .then(res => res.json())

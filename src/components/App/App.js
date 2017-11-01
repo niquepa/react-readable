@@ -5,6 +5,7 @@ import { withRouter, Route } from 'react-router-dom';
 import PostsList from '../Posts/PostsList';
 import PostDetail from '../Posts/PostDetail';
 import PostDetailEdit from '../Posts/PostDetailEdit';
+import CommentEdit from '../Comments/CommentEdit';
 import 'material-components-web/dist/material-components-web.css';
 import 'material-design-icons/iconfont/material-icons.css';
 import '../../assets/css/App.css';
@@ -62,6 +63,16 @@ class App extends Component {
               category={match.params.categoryId}
             />
         )}
+        />
+  
+        <Route
+          exact
+          path="/:postId/:commentId/editComment"
+          render={({ match }) => (
+            <CommentEdit
+              commentId={match.params.commentId}
+            />
+          )}
         />
 
         {/* <Route */}
