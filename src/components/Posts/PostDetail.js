@@ -12,21 +12,25 @@ class PostDetail extends Component {
   }
 
   render() {
-    const { post, postId, Category } = this.props;
+    const post = this.props.post;
 
     return (
       <main className="mdc-content post-detail">
-        { post && (
-        <main>
-          <Title>{post.title}</Title>
-          <caption>Last updated: {post.timestamp}</caption>
-          <Subheading2>by <b>{post.author}</b> in <Link to={`/${post.category}`}>{post.category}</Link> | <b>{post.commentCount}</b> Comments</Subheading2>
-          <PostVote postId={post.id} voteScore={post.voteScore} />
-          <Body1>{post.body}</Body1>
-          <Link to={`/${post.category}/${post.id}/edit`}><Button raised dense primary><Icon name="edit" className="mdc-button__icon" /> Edit</Button></Link>
-          <CommentsList postId={this.props.postId} />
-        </main>
-      )}
+        { ((post || '').id || '') !== '' ?
+          <main>
+            <Title>{post.title}</Title>
+            <caption>Last updated: {post.timestamp}</caption>
+            <Subheading2>by <b>{post.author}</b> in <Link to={`/${post.category}`}>{post.category}</Link> | <b>{post.commentCount}</b> Comments</Subheading2>
+            <PostVote postId={post.id} voteScore={post.voteScore} />
+            <Body1>{post.body}</Body1>
+            <Link to={`/${post.category}/${post.id}/edit`}><Button raised dense primary><Icon name="edit" className="mdc-button__icon" /> Edit</Button></Link>
+            <CommentsList postId={this.props.postId} />
+          </main>
+      :
+          <main>
+            <Title>POST NOT FOUND</Title>
+          </main>
+        }
       </main>
     );
   }
