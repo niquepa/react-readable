@@ -6,6 +6,11 @@ import {
 } from '../actions/index';
 
 const global = (state = {}, action) => {
+  
+  const {
+    comment, comments, post, posts,
+  } = action;
+  
   switch (action.type) {
     case RECEIVE_CATEGORIES:
       const { categories } = action;
@@ -14,7 +19,6 @@ const global = (state = {}, action) => {
         categories,
       };
     case RECEIVE_POSTS:
-      const { posts } = action;
       return {
         ...state,
         posts,
@@ -22,15 +26,14 @@ const global = (state = {}, action) => {
     case UPDATE_POST:
       return {
         ...state,
-        posts: state.posts.filter(item => item.id !== action.post.id).concat(action.post),
+        posts: state.posts.filter(item => item.id !== post.id).concat(post),
       };
     case RECEIVE_POST:
       return {
         ...state,
-        post: action.post,
+        post,
       };
     case RECEIVE_COMMENTS:
-      const { comments } = action;
       return {
         ...state,
         comments,
@@ -38,22 +41,22 @@ const global = (state = {}, action) => {
     case UPDATE_COMMENT:
       return {
         ...state,
-        comments: state.comments.filter(item => item.id !== action.comment.id).concat(action.comment),
+        comments: state.comments.filter(item => item.id !== comment.id).concat(comment),
       };
     case RECEIVE_COMMENT:
       return {
         ...state,
-        comment: action.comment,
+        comment,
       };
     case DELETE_COMMENT:
       return {
         ...state,
-        comments: state.comments.filter(item => item.id !== action.comment),
+        comments: state.comments.filter(item => item.id !== comment),
       };
     case DELETE_POST:
       return {
         ...state,
-        posts: state.posts.filter(item => item.id !== action.post),
+        posts: state.posts.filter(item => item.id !== post),
       };
     default:
       return state;
