@@ -8,10 +8,9 @@ class CommentVote extends Component {
   addVote = (vote) => {
     this.props.voteComment(this.props.commentId, { option: vote });
   }
-  
   render() {
     const { voteScore } = this.props;
-    
+
     return (
       <span>
         <Button className="card-buttons" primary onClick={() => this.addVote('downVote')}>

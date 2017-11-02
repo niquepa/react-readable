@@ -6,11 +6,10 @@ import {
 } from '../actions/index';
 
 const global = (state = {}, action) => {
-  
   const {
     comment, comments, post, posts,
   } = action;
-  
+
   switch (action.type) {
     case RECEIVE_CATEGORIES:
       const { categories } = action;

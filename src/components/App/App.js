@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import Header from '../Shared/Header';
 import { withRouter, Route } from 'react-router-dom';
+import 'material-components-web/dist/material-components-web.css';
+import 'material-design-icons/iconfont/material-icons.css';
+import Header from '../Shared/Header';
 import PostsList from '../Posts/PostsList';
 import PostDetail from '../Posts/PostDetail';
 import PostDetailEdit from '../Posts/PostDetailEdit';
-import 'material-components-web/dist/material-components-web.css';
-import 'material-design-icons/iconfont/material-icons.css';
 import '../../assets/css/App.css';
 import { fetchCategories } from '../../actions/index';
 

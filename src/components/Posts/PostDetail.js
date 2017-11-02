@@ -7,7 +7,6 @@ import CommentsList from '../Comments/CommentsList';
 import { deletePost, fetchPost } from '../../actions/index';
 
 class PostDetail extends Component {
-  
   componentDidMount() {
     this.props.getPost(this.props.postId);
   }
@@ -17,7 +16,7 @@ class PostDetail extends Component {
 
     return (
       <main className="mdc-content post-detail">
-      { post && (
+        { post && (
         <main>
           <Title>{post.title}</Title>
           <caption>Last updated: {post.timestamp}</caption>
