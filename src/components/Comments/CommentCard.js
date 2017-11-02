@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Link, withRouter } from 'react-router-dom';
 import { Card, CardHeader, CardTitle, CardSubtitle, CardText, CardActions, Button, Icon, Grid, Cell, Dialog, DialogHeader, DialogTitle, DialogBody, DialogFooter, Textfield, Title } from 'react-mdc-web/lib';
 import CommentVote from './CommentVote';
-import { deleteCommentFetchPost, editComment } from '../../actions/index';
+import { deleteCommentFetchPost, editComment, addSnack } from '../../actions/index';
 
 class CommentCard extends Component {
   constructor(props) {
@@ -31,6 +31,7 @@ class CommentCard extends Component {
 
   handleSubmit(event) {
     event.preventDefault();
+    this.props.addSnack('Comment updated!');
     this.props.editComment(this.props.comment.id, {
       author: this.state.author,
       body: this.state.body,
@@ -40,6 +41,7 @@ class CommentCard extends Component {
 
   deleteComment = (comment) => {
     this.props.deleteComment(comment);
+    this.props.addSnack('Comment deleted!');
     this.setState({ isOpenDelete: false });
   }
 
@@ -142,7 +144,7 @@ const mapStateToProps = ({ global }) => ({
 const mapDispatchToProps = dispatch => ({
   editComment: (commentId, body) => dispatch(editComment(commentId, body)),
   deleteComment: comment => dispatch(deleteCommentFetchPost(comment)),
-  // deleteComment: commentId => deleteCommentFetchPost(dispatch, commentId),
+  addSnack: snack => dispatch(addSnack(snack)),
 });
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(CommentCard));

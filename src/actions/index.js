@@ -4,13 +4,13 @@ export const RECEIVE_CATEGORIES = 'RECEIVE_CATEGORIES';
 export const RECEIVE_POSTS = 'RECEIVE_POSTS';
 export const UPDATE_POST = 'UPDATE_POST';
 export const RECEIVE_POST = 'RECEIVE_POST';
-// export const ADD_POST = 'ADD_POST';
 export const DELETE_POST = 'DELETE_POST';
 export const RECEIVE_COMMENTS = 'RECEIVE_COMMENTS';
 export const UPDATE_COMMENT = 'UPDATE_COMMENT';
 export const RECEIVE_COMMENT = 'RECEIVE_COMMENT';
-// export const ADD_COMMENT = 'ADD_COMMENT';
 export const DELETE_COMMENT = 'DELETE_COMMENT';
+export const ADD_SNACK = 'ADD_SNACK';
+export const DELETE_SNACK = 'DELETE_SNACK';
 
 export const receiveCategories = categories => ({
   type: RECEIVE_CATEGORIES,
@@ -149,3 +149,16 @@ export const deleteCommentFetchPost = comment => dispatch => (
       dispatch(fetchPost(comment.parentId));
     })
 );
+
+export const addSnack = (snack) => ({
+  type: ADD_SNACK,
+  snack
+});
+
+export const removeSnack = () => ({
+  type: DELETE_SNACK,
+});
+
+// export const deleteSnack = () =>  dispatch => (
+//
+// )

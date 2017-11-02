@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link, Route, withRouter } from 'react-router-dom';
-import { Toolbar, ToolbarRow, ToolbarSection, ToolbarTitle, Tabbar, Tab } from 'react-mdc-web/lib';
+import { Toolbar, ToolbarRow, ToolbarSection, ToolbarTitle, Tabbar, Tab, Snackbar } from 'react-mdc-web/lib';
+import { removeSnack } from '../../actions/index';
 
 class Header extends Component {
   state = {
@@ -9,36 +10,50 @@ class Header extends Component {
   }
 
   render() {
-    const { categories } = this.props;
+    const { categories, snack } = this.props;
+    const openSnack = !!(snack && snack.length > 0);
 
     return (
-      <Toolbar fixed>
-        <ToolbarRow>
-          <ToolbarSection align="start">
-            <ToolbarTitle><Link to="/" className="header-link">Readable - a react project</Link></ToolbarTitle>
-          </ToolbarSection>
-          <Tabbar align="start">
-            { categories && categories.map(category => (
-              <Route
-                key={category.path}
-                path={`/${category.path}`}
-                children={({ match }) => (
-                  <Tab active={!!match} key={category.path} component="span">
-                    <Link to={`/${category.path}`} className="header-link">{category.name}</Link>
-                  </Tab>
-              )}
-              />
-            ))}
-            <span className="mdc-tab-bar__indicator" />
-          </Tabbar>
-        </ToolbarRow>
-      </Toolbar>
+      <div>
+        <Toolbar fixed>
+          <ToolbarRow>
+            <ToolbarSection align="start">
+              <ToolbarTitle><Link to="/" className="header-link">Readable - a react project</Link></ToolbarTitle>
+            </ToolbarSection>
+            <Tabbar align="start">
+              { categories && categories.map(category => (
+                <Route
+                  key={category.path}
+                  path={`/${category.path}`}
+                  children={({ match }) => (
+                    <Tab active={!!match} key={category.path} component="span">
+                      <Link to={`/${category.path}`} className="header-link">{category.name}</Link>
+                    </Tab>
+                )}
+                />
+              ))}
+              <span className="mdc-tab-bar__indicator" />
+            </Tabbar>
+          </ToolbarRow>
+        </Toolbar>
+        <Snackbar
+          onTimeout={() => { this.props.removeSnack(); }}
+          open={openSnack}
+        >
+          {snack}
+        </Snackbar>
+      </div>
     );
   }
 }
 
 const mapStateToProps = ({ global }) => ({
   categories: global.categories,
+  snack: global.snack,
 });
 
-export default withRouter(connect(mapStateToProps)(Header));
+const mapDispatchToProps = dispatch => ({
+  removeSnack: (postId, body) => dispatch(removeSnack()),
+});
+
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Header));

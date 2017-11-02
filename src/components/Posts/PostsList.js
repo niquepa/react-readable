@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Title, Grid, RadioGroup, Radio, Dialog, DialogTitle, DialogBody, DialogFooter, DialogHeader, Cell, Textfield, Button, Icon } from 'react-mdc-web/lib';
 import { withRouter } from 'react-router-dom';
-import { fetchPosts, newPost } from '../../actions/index';
+import { fetchPosts, newPost, addSnack } from '../../actions/index';
 import PostCard from './PostCard';
 
 class PostsList extends Component {
@@ -33,6 +33,7 @@ class PostsList extends Component {
 
   handleSubmit(event) {
     event.preventDefault();
+    this.props.addSnack('Post created!');
     this.props.createPost({
       id: Date.now(),
       timestamp: Date.now(),
@@ -164,6 +165,7 @@ const mapStateToProps = ({ global }) => ({
 const mapDispatchToProps = dispatch => ({
   getPosts: category => dispatch(fetchPosts(category)),
   createPost: post => dispatch(newPost(post)),
+  addSnack: snack => dispatch(addSnack(snack)),
 });
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(PostsList));

@@ -2,12 +2,19 @@ import { combineReducers } from 'redux';
 import {
   DELETE_COMMENT,
   DELETE_POST, RECEIVE_CATEGORIES, RECEIVE_COMMENTS, RECEIVE_POST,
-  RECEIVE_POSTS, RECEIVE_COMMENT, UPDATE_POST, UPDATE_COMMENT,
+  RECEIVE_POSTS, RECEIVE_COMMENT, UPDATE_POST, UPDATE_COMMENT, ADD_SNACK, DELETE_SNACK,
 } from '../actions/index';
 
-const global = (state = {}, action) => {
+
+const initialState = {
+  categories: [],
+  posts: [],
+  comments: [],
+};
+
+const global = (state = initialState, action) => {
   const {
-    comment, comments, post, posts,
+    comment, comments, post, posts, snack,
   } = action;
 
   switch (action.type) {
@@ -26,6 +33,7 @@ const global = (state = {}, action) => {
       return {
         ...state,
         posts: state.posts.filter(item => item.id !== post.id).concat(post),
+        post,
       };
     case RECEIVE_POST:
       return {
@@ -56,6 +64,16 @@ const global = (state = {}, action) => {
       return {
         ...state,
         posts: state.posts.filter(item => item.id !== post),
+      };
+    case ADD_SNACK:
+      return {
+        ...state,
+        snack,
+      };
+    case DELETE_SNACK:
+      return {
+        ...state,
+        snack: '',
       };
     default:
       return state;

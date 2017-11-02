@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Redirect, withRouter } from 'react-router-dom';
 import { Title, Button, Icon, Cell, Textfield, Grid, RadioGroup, Radio, Dialog, DialogHeader, DialogBody, DialogFooter, DialogTitle } from 'react-mdc-web/lib';
-import { deletePost, fetchPost, editPost } from '../../actions/index';
+import { deletePost, fetchPost, editPost, addSnack } from '../../actions/index';
 
 class PostDetailEdit extends Component {
   constructor(props) {
@@ -31,6 +31,7 @@ class PostDetailEdit extends Component {
 
   removePost = (post) => {
     this.props.deletePost(post.id);
+    this.props.addSnack('Post deleted!');
     this.props.history.push('/');
   }
 
@@ -57,6 +58,7 @@ class PostDetailEdit extends Component {
 
   handleSubmit(event) {
     event.preventDefault();
+    this.props.addSnack('Post updated!');
     this.props.editPost(this.props.postId, {
       title: this.state.title,
       author: this.state.author,
@@ -160,6 +162,7 @@ const mapDispatchToProps = dispatch => ({
   getPost: post => dispatch(fetchPost(post)),
   deletePost: post => dispatch(deletePost(post)),
   editPost: (postId, body) => dispatch(editPost(postId, body)),
+  addSnack: snack => dispatch(addSnack(snack)),
 });
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(PostDetailEdit));

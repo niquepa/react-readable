@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Title, Grid, RadioGroup, Radio, Dialog, DialogTitle, DialogBody, DialogFooter, DialogHeader, Cell, Textfield, Button, Icon } from 'react-mdc-web/lib';
 import { withRouter } from 'react-router-dom';
-import { fetchComments, newCommentFetchPost } from '../../actions/index';
+import { fetchComments, newCommentFetchPost, addSnack } from '../../actions/index';
 import CommentCard from './CommentCard';
 
 class CommentsList extends Component {
@@ -31,6 +31,7 @@ class CommentsList extends Component {
 
   handleSubmit(event) {
     event.preventDefault();
+    this.props.addSnack('Comment created!');
     this.props.createComment({
       id: Date.now(),
       parentId: this.props.postId,
@@ -134,6 +135,7 @@ const mapStateToProps = ({ global }) => ({
 const mapDispatchToProps = dispatch => ({
   getComments: post => dispatch(fetchComments(post)),
   createComment: comment => dispatch(newCommentFetchPost(comment)),
+  addSnack: snack => dispatch(addSnack(snack)),
 });
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(CommentsList));
