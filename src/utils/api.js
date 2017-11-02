@@ -14,7 +14,6 @@ export const getCategories = () => (
 
 export const getPosts = (category) => {
   if (category && category !== '/') {
-    console.log(`API getPosts: ${category}`);
     return fetch(`${api}/${category}/posts`, { headers })
       .then(res => res.json())
       .then(data => data);
@@ -28,10 +27,9 @@ export const getPosts = (category) => {
 export const getPost = postId => (
   fetch(`${api}/posts/${postId}`, { headers })
     .then(res => res.json())
-    // .then(data => data);
 );
 
-export const newPost = (body) => (
+export const newPost = body => (
   fetch(`${api}/posts`, {
     headers,
     method: 'post',
@@ -85,7 +83,7 @@ export const voteComment = (commentId, body) => (
     .then(res => res.json())
 );
 
-export const newComment = (body) => (
+export const newComment = body => (
   fetch(`${api}/comments`, {
     headers,
     method: 'post',
