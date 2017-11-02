@@ -1,14 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link, withRouter } from 'react-router-dom';
-import { Card, CardHeader, CardTitle, CardSubtitle, CardMedia, CardText, CardActions, Button, Icon, Grid, Cell, Caption, Title } from 'react-mdc-web/lib';
+import { Card, CardHeader, CardTitle, CardSubtitle, CardMedia, CardText, CardActions, Button, Icon, Grid, Cell } from 'react-mdc-web/lib';
 import PostVote from './PostVote';
 import { deletePost } from '../../actions/index';
 
 class PostCard extends Component {
-  removePost = (post) => {
-    this.props.deletePost(post.id);
-  }
 
   summary = (str) => {
     if (str.length > 50) {

@@ -21,24 +21,10 @@ class App extends Component {
         <Header />
 
         <Route
-          path="/redux"
+          path="/:categoryId"
           exact
-          render={() => (
-            <PostsList />
-        )}
-        />
-        <Route
-          path="/react"
-          exact
-          render={() => (
-            <PostsList />
-        )}
-        />
-        <Route
-          path="/udacity"
-          exact
-          render={() => (
-            <PostsList />
+          render={({ match }) => (
+            <PostsList category={match.params.categoryId} />
         )}
         />
 
@@ -63,14 +49,6 @@ class App extends Component {
             />
         )}
         />
-
-        {/* <Route */}
-        {/* exact */}
-        {/* path="/new" */}
-        {/* render={({ match }) => ( */}
-        {/* <PostDetailNew /> */}
-        {/* )} */}
-        {/* /> */}
 
         <Route
           exact

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Link, withRouter } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 import { Button, Icon, Caption } from 'react-mdc-web/lib';
 import { voteComment } from '../../actions/index';
 

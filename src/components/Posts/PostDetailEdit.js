@@ -70,7 +70,7 @@ class PostDetailEdit extends Component {
 
   render() {
     const {
-      post, postId, category, categories,
+      post, categories,
     } = this.props;
     const { redirect } = this.state;
 

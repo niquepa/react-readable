@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Link, withRouter } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 import { Card, CardHeader, CardTitle, CardSubtitle, CardText, CardActions, Button, Icon, Grid, Cell, Dialog, DialogHeader, DialogTitle, DialogBody, DialogFooter, Textfield, Title } from 'react-mdc-web/lib';
 import CommentVote from './CommentVote';
 import { deleteCommentFetchPost, editComment, addSnack } from '../../actions/index';

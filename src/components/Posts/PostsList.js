@@ -52,7 +52,13 @@ class PostsList extends Component {
   }
 
   componentDidMount() {
-    this.props.getPosts(this.props.match.path.replace('/', ''));
+    this.props.getPosts(this.props.category);
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (this.props.category != nextProps.category) {
+      this.props.getPosts(nextProps.category);
+    }
   }
 
   sortPosts = (posts, method) => {
