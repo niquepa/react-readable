@@ -50,7 +50,7 @@ class PostCard extends Component {
                 <Link to={`/${post.category}/${post.id}`}><Button raised compact primary>Read more ...</Button></Link>
               </Cell>
               <Cell col={6}>
-                <Link to={`/${post.category}/${post.id}/edit`}><Button raised dense primary className="card-buttons"><Icon name="edit" className="mdc-button__icon" /></Button></Link>
+                <Link to={`/${post.category}/${post.id}/edit`}><Button raised dense primary className="card-buttons"><Icon name="edit" className="mdc-button__icon" /> Edit</Button></Link>
               </Cell>
             </Grid>
           </CardActions>

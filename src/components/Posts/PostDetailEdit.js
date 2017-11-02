@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Redirect, withRouter } from 'react-router-dom';
-import { Title, Button, Icon, Cell, Textfield, Grid, RadioGroup, Radio } from 'react-mdc-web/lib';
+import { Title, Button, Icon, Cell, Textfield, Grid, RadioGroup, Radio, Dialog, DialogHeader, DialogBody, DialogFooter, DialogTitle } from 'react-mdc-web/lib';
 import { deletePost, fetchPost, editPost } from '../../actions/index';
 
 class PostDetailEdit extends Component {
@@ -12,6 +12,7 @@ class PostDetailEdit extends Component {
       author: '',
       body: '',
       category: '',
+      isOpenDelete: false,
     };
 
     this.handleInputChange = this.handleInputChange.bind(this);
@@ -77,8 +78,6 @@ class PostDetailEdit extends Component {
         { redirect && (
           <Redirect to={redirect} />
         )}
-        {/* <Title>{JSON.stringify(post)} - {JSON.stringify(this.state.submitted)}</Title> */}
-        <Title>{JSON.stringify(this.props.history)}</Title>
         { post &&
         <form onSubmit={this.handleSubmit}>
           <Grid>
@@ -127,11 +126,26 @@ class PostDetailEdit extends Component {
 
             </Cell>
           </Grid>
-          <Button raised dense primary type="submit" ><Icon name="save" className="mdc-button__icon" /></Button>
-          <Button raised dense primary type="button" onClick={() => this.removePost(post)}><Icon name="delete" className="mdc-button__icon" /></Button>
-          <Button raised dense primary type="button" onClick={this.props.history.goBack}><Icon name="cancel" className="mdc-button__icon" /></Button>
+          <Button raised dense primary type="button" onClick={() => this.setState({ isOpenDelete: true })}><Icon name="delete" className="mdc-button__icon" /> Delete</Button>
+          <Button raised dense primary type="button" onClick={this.props.history.goBack}><Icon name="cancel" className="mdc-button__icon" /> Cancel</Button>
+          <Button raised dense primary type="submit" ><Icon name="save" className="mdc-button__icon" /> Save</Button>
         </form>
         }
+        <Dialog
+          open={this.state.isOpenDelete}
+          onClose={() => { this.setState({ isOpenDelete: false }); }}
+        >
+          <DialogHeader>
+            <DialogTitle>Delete Post</DialogTitle>
+          </DialogHeader>
+          <DialogBody>
+            Are you sure?
+          </DialogBody>
+          <DialogFooter>
+            <Button raised dense primary type="button" onClick={() => { this.setState({ isOpenDelete: false }); }}><Icon name="cancel" className="mdc-button__icon" /> Cancel</Button>
+            <Button raised dense primary type="button" onClick={() => this.removePost(post)}><Icon name="delete" className="mdc-button__icon" /> Delete</Button>
+          </DialogFooter>
+        </Dialog>
       </main>
     );
   }

@@ -74,12 +74,12 @@ class CommentCard extends Component {
           open={this.state.isOpen}
           onClose={() => { this.setState({ isOpen: false }); }}
         >
-          <DialogHeader>
-            <DialogTitle>Edit Comment</DialogTitle>
-          </DialogHeader>
-          <DialogBody>
-            {comment &&
-            <form>
+          <form onSubmit={this.handleSubmit}>
+            <DialogHeader>
+              <DialogTitle>Edit Comment</DialogTitle>
+            </DialogHeader>
+            <DialogBody>
+              {comment &&
               <Grid>
                 <Cell col={12}>
                   <Textfield
@@ -107,13 +107,13 @@ class CommentCard extends Component {
                   </div>
                 </Cell>
               </Grid>
-            </form>
-            }
-          </DialogBody>
-          <DialogFooter>
-            <Button raised dense primary type="button" onClick={() => { this.setState({ isOpen: false }); }}><Icon name="cancel" className="mdc-button__icon" /> Cancel</Button>
-            <Button raised dense primary type="button" onClick={(e) => { this.handleSubmit(e); }}><Icon name="save" className="mdc-button__icon" /> Accept</Button>
-          </DialogFooter>
+              }
+            </DialogBody>
+            <DialogFooter>
+              <Button raised dense primary type="button" onClick={() => { this.setState({ isOpen: false }); }}><Icon name="cancel" className="mdc-button__icon" /> Cancel</Button>
+              <Button raised dense primary type="submit" ><Icon name="save" className="mdc-button__icon" /> Accept</Button>
+            </DialogFooter>
+          </form>
         </Dialog>
         <Dialog
           open={this.state.isOpenDelete}

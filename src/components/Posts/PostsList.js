@@ -89,11 +89,11 @@ class PostsList extends Component {
             open={this.state.isOpenCreate}
             onClose={() => { this.setState({ isOpenCreate: false }); }}
           >
-            <DialogHeader>
-              <DialogTitle>New Post</DialogTitle>
-            </DialogHeader>
-            <DialogBody>
-              <form>
+            <form onSubmit={this.handleSubmit}>
+              <DialogHeader>
+                <DialogTitle>New Post</DialogTitle>
+              </DialogHeader>
+              <DialogBody>
                 <Grid>
                   <Cell col={12}>
                     <Textfield
@@ -143,12 +143,12 @@ class PostsList extends Component {
                     </div>
                   </Cell>
                 </Grid>
-              </form>
-            </DialogBody>
-            <DialogFooter>
-              <Button raised dense primary type="button" onClick={() => { this.setState({ isOpenCreate: false }); }}><Icon name="cancel" className="mdc-button__icon" /> Cancel</Button>
-              <Button raised dense primary type="button" onClick={(e) => { this.handleSubmit(e); }}><Icon name="save" className="mdc-button__icon" /> Accept</Button>
-            </DialogFooter>
+              </DialogBody>
+              <DialogFooter>
+                <Button raised dense primary type="button" onClick={() => { this.setState({ isOpenCreate: false }); }}><Icon name="cancel" className="mdc-button__icon" /> Cancel</Button>
+                <Button raised dense primary type="submit" ><Icon name="save" className="mdc-button__icon" /> Accept</Button>
+              </DialogFooter>
+            </form>
           </Dialog>
         </main>
       </main>

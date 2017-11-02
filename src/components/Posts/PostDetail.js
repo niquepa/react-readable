@@ -24,7 +24,7 @@ class PostDetail extends Component {
           <Subheading2>by <b>{post.author}</b> in <Link to={`/${post.category}`}>{post.category}</Link> | <b>{post.commentCount}</b> Comments</Subheading2>
           <PostVote postId={post.id} voteScore={post.voteScore} />
           <Body1>{post.body}</Body1>
-          <Link to={`/${post.category}/${post.id}/edit`}><Button raised dense primary><Icon name="edit" className="mdc-button__icon" /></Button></Link>
+          <Link to={`/${post.category}/${post.id}/edit`}><Button raised dense primary><Icon name="edit" className="mdc-button__icon" /> Edit</Button></Link>
           <CommentsList postId={this.props.postId} />
         </main>
       )}
