@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter, Route } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import 'material-components-web/dist/material-components-web.css';
 import 'material-design-icons/iconfont/material-icons.css';
 import Header from '../Shared/Header';
@@ -69,5 +70,9 @@ const mapStateToProps = ({ global }) => ({
 const mapDispatchToProps = dispatch => ({
   fetchCategories: () => dispatch(fetchCategories()),
 });
+
+App.propTypes = {
+  fetchCategories: PropTypes.func,
+};
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(App));

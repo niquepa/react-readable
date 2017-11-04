@@ -150,15 +150,11 @@ export const deleteCommentFetchPost = comment => dispatch => (
     })
 );
 
-export const addSnack = (snack) => ({
+export const addSnack = snack => ({
   type: ADD_SNACK,
-  snack
+  snack,
 });
 
 export const removeSnack = () => ({
   type: DELETE_SNACK,
 });
-
-// export const deleteSnack = () =>  dispatch => (
-//
-// )

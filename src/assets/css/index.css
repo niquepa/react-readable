@@ -1,6 +1,5 @@
 body{
   margin: 0;
-  /*padding-top: 64px;*/
   height: 100%;
 }
 
@@ -27,11 +26,6 @@ body{
   min-height: 100%;
 }
 
-.post-card {
-  /*width: 500px;*/
-  /*margin: 16px;*/
-}
-
 .header-link  {
   text-decoration: none;
   color: white;
@@ -45,7 +39,14 @@ body{
 .mdc-button__icon {
   display: inline-block;
   height: 18px;
-  /*margin-right: 8px;*/
   line-height: inherit;
   vertical-align: top;
+}
+
+.radio-horizontal {
+  display: flex;
+}
+
+.sort-by {
+  padding: 8px;
 }

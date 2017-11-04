@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Title, Grid, RadioGroup, Radio, Dialog, DialogTitle, DialogBody, DialogFooter, DialogHeader, Cell, Textfield, Button, Icon } from 'react-mdc-web/lib';
+import { Title, Grid, RadioGroup, Radio, Dialog, DialogTitle, DialogBody, DialogFooter, DialogHeader, Cell, Textfield, Button, Icon, Caption } from 'react-mdc-web/lib';
 import { withRouter } from 'react-router-dom';
 import { fetchPosts, newPost, addSnack } from '../../actions/index';
 import PostCard from './PostCard';
@@ -77,16 +77,24 @@ class PostsList extends Component {
     return (
       <main className="mdc-content posts-list">
         <main className="posts-list-int">
-          <RadioGroup
-            onChange={({ target: { value } }) => { this.setState({ sort: value }); }}
-            name="saturn"
-            value={this.state.sort}
-          >
-            <Radio value="voteScore">Votes</Radio>
-            <Radio value="timestamp">Date</Radio>
-            <Radio value="commentCount">Comments</Radio>
-          </RadioGroup>
-          <Button raised dense primary className="card-buttons" onClick={() => { this.setState({ isOpenCreate: true }); }}><Icon name="add_circle" className="mdc-button__icon" /> New Post</Button>
+          <Grid className="sort-by">
+            <Cell col={2} tablet={6} phone={12}>
+              <Button raised dense primary className="card-buttons" onClick={() => { this.setState({ isOpenCreate: true }); }}><Icon name="add_circle" className="mdc-button__icon" /> New Post</Button>
+            </Cell>
+            <Cell col={10} tablet={6} phone={12}>
+              <Caption>Sort by:</Caption>
+              <RadioGroup
+                onChange={({ target: { value } }) => { this.setState({ sort: value }); }}
+                name="saturn"
+                value={this.state.sort}
+                className="radio-horizontal"
+              >
+                <Radio value="voteScore">Votes</Radio>
+                <Radio value="timestamp">Date</Radio>
+                <Radio value="commentCount">Comments</Radio>
+              </RadioGroup>
+            </Cell>
+          </Grid>
           <Grid>
             { filteredPosts && filteredPosts.map(post => (
               <PostCard post={post} key={post.id} />
