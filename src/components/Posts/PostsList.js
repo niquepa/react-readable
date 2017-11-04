@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Title, Grid, RadioGroup, Radio, Dialog, DialogTitle, DialogBody, DialogFooter, DialogHeader, Cell, Textfield, Button, Icon, Caption } from 'react-mdc-web/lib';
 import { withRouter } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import { fetchPosts, newPost, addSnack } from '../../actions/index';
 import PostCard from './PostCard';
 
@@ -181,5 +182,14 @@ const mapDispatchToProps = dispatch => ({
   createPost: post => dispatch(newPost(post)),
   addSnack: snack => dispatch(addSnack(snack)),
 });
+
+PostsList.propTypes = {
+  category: PropTypes.string,
+  posts: PropTypes.array,
+  categories: PropTypes.array,
+  getPosts: PropTypes.func,
+  createPost: PropTypes.func,
+  addSnack: PropTypes.func,
+};
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(PostsList));

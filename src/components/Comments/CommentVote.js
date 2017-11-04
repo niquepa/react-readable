@@ -36,6 +36,7 @@ const mapDispatchToProps = dispatch => ({
 CommentVote.propTypes = {
   voteScore: PropTypes.number,
   voteComment: PropTypes.func,
+  commentId: PropTypes.number,
 };
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(CommentVote));

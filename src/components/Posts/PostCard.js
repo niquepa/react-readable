@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link, withRouter } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import { Card, CardHeader, CardTitle, CardSubtitle, CardMedia, CardText, CardActions, Button, Icon, Grid, Cell } from 'react-mdc-web/lib';
 import PostVote from './PostVote';
 import { deletePost } from '../../actions/index';
 
 class PostCard extends Component {
-
   summary = (str) => {
     if (str.length > 50) {
       return str.substr(0, 50);
@@ -58,12 +58,15 @@ class PostCard extends Component {
 }
 
 const mapStateToProps = ({ global }) => ({
-  // comments: global.comments,
 });
 
 const mapDispatchToProps = dispatch => ({
-  // fetchComments: post => dispatch(fetchComments(post)),
   deletePost: post => dispatch(deletePost(post)),
 });
+
+PostCard.propTypes = {
+  post: PropTypes.object,
+  deletePost: PropTypes.func,
+};
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(PostCard));

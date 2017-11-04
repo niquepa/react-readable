@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Redirect, withRouter } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import { Title, Button, Icon, Cell, Textfield, Grid, RadioGroup, Radio, Dialog, DialogHeader, DialogBody, DialogFooter, DialogTitle } from 'react-mdc-web/lib';
 import { deletePost, fetchPost, editPost, addSnack } from '../../actions/index';
 
@@ -164,5 +165,16 @@ const mapDispatchToProps = dispatch => ({
   editPost: (postId, body) => dispatch(editPost(postId, body)),
   addSnack: snack => dispatch(addSnack(snack)),
 });
+
+PostDetailEdit.propTypes = {
+  history: PropTypes.object,
+  post: PropTypes.array,
+  postId: PropTypes.number,
+  categories: PropTypes.array,
+  getPost: PropTypes.func,
+  deletePost: PropTypes.func,
+  editPost: PropTypes.func,
+  addSnack: PropTypes.func,
+};
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(PostDetailEdit));
