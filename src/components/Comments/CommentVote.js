@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import { Button, Icon, Caption } from 'react-mdc-web/lib';
 import { voteComment } from '../../actions/index';
 
@@ -31,5 +32,10 @@ const mapStateToProps = ({ global }) => ({
 const mapDispatchToProps = dispatch => ({
   voteComment: (commentId, vote) => dispatch(voteComment(commentId, vote)),
 });
+
+CommentVote.propTypes = {
+  voteScore: PropTypes.number,
+  voteComment: PropTypes.func,
+};
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(CommentVote));

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Title, Grid, RadioGroup, Radio, Dialog, DialogTitle, DialogBody, DialogFooter, DialogHeader, Cell, Textfield, Button, Icon } from 'react-mdc-web/lib';
 import { withRouter } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import { fetchComments, newCommentFetchPost, addSnack } from '../../actions/index';
 import CommentCard from './CommentCard';
 
@@ -17,6 +18,10 @@ class CommentsList extends Component {
 
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+  }
+  
+  componentDidMount() {
+    this.props.getComments(this.props.postId);
   }
 
   handleInputChange(event) {
@@ -44,10 +49,6 @@ class CommentsList extends Component {
       author: '',
       body: '',
     });
-  }
-
-  componentDidMount() {
-    this.props.getComments(this.props.postId);
   }
 
   sortComments = (comments, method) => {
@@ -137,5 +138,14 @@ const mapDispatchToProps = dispatch => ({
   createComment: comment => dispatch(newCommentFetchPost(comment)),
   addSnack: snack => dispatch(addSnack(snack)),
 });
+
+CommentsList.propTypes = {
+  comments: PropTypes.array,
+  getComments: PropTypes.func,
+  createComment: PropTypes.func,
+  addSnack: PropTypes.func,
+  postId: PropTypes.number,
+  
+};
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(CommentsList));

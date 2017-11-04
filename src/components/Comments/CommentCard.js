@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import { Card, CardHeader, CardTitle, CardSubtitle, CardText, CardActions, Button, Icon, Grid, Cell, Dialog, DialogHeader, DialogTitle, DialogBody, DialogFooter, Textfield, Title } from 'react-mdc-web/lib';
 import CommentVote from './CommentVote';
 import { deleteCommentFetchPost, editComment, addSnack } from '../../actions/index';
@@ -138,7 +139,6 @@ class CommentCard extends Component {
 }
 
 const mapStateToProps = ({ global }) => ({
-  // comments: global.comments,
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -146,5 +146,12 @@ const mapDispatchToProps = dispatch => ({
   deleteComment: comment => dispatch(deleteCommentFetchPost(comment)),
   addSnack: snack => dispatch(addSnack(snack)),
 });
+
+CommentCard.propTypes = {
+  comment: PropTypes.object,
+  editComment: PropTypes.func,
+  deleteComment: PropTypes.func,
+  addSnack: PropTypes.func,
+};
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(CommentCard));
