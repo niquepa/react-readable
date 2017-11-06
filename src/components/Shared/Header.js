@@ -1,11 +1,11 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import { Link, Route, withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { Toolbar, ToolbarRow, ToolbarSection, ToolbarTitle, Tabbar, Tab, Snackbar } from 'react-mdc-web/lib';
 import { removeSnack } from '../../actions/index';
 
-class Header extends Component {
+class Header extends PureComponent {
   render() {
     const { categories, snack } = this.props;
     const openSnack = !!(snack && snack.length > 0);

@@ -144,7 +144,7 @@ CommentsList.propTypes = {
   getComments: PropTypes.func,
   createComment: PropTypes.func,
   addSnack: PropTypes.func,
-  postId: PropTypes.number,
+  postId: PropTypes.string,
   
 };
 

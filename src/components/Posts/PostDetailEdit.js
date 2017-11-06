@@ -168,8 +168,8 @@ const mapDispatchToProps = dispatch => ({
 
 PostDetailEdit.propTypes = {
   history: PropTypes.object,
-  post: PropTypes.array,
-  postId: PropTypes.number,
+  post: PropTypes.object,
+  postId: PropTypes.string,
   categories: PropTypes.array,
   getPost: PropTypes.func,
   deletePost: PropTypes.func,

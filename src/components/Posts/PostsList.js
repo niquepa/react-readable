@@ -27,7 +27,7 @@ class PostsList extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    if (this.props.category != nextProps.category) {
+    if (this.props.category !== nextProps.category) {
       this.props.getPosts(nextProps.category);
     }
   }

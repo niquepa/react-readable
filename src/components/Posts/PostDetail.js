@@ -47,7 +47,7 @@ const mapDispatchToProps = dispatch => ({
 
 PostDetail.propTypes = {
   post: PropTypes.object,
-  postId: PropTypes.number,
+  postId: PropTypes.string,
   getPost: PropTypes.func,
 };
 

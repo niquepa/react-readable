@@ -35,7 +35,7 @@ const mapDispatchToProps = dispatch => ({
 });
 
 PostVote.propTypes = {
-  postId: PropTypes.number,
+  postId: PropTypes.string,
   voteScore: PropTypes.number,
   votePost: PropTypes.func,
 };
