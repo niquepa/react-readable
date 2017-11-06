@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import { Title, Subheading2, Body1, Button, Icon } from 'react-mdc-web/lib';
 import PostVote from './PostVote';
 import CommentsList from '../Comments/CommentsList';
-import { deletePost, fetchPost } from '../../actions/index';
+import { fetchPost } from '../../actions/index';
 
 class PostDetail extends Component {
   componentDidMount() {
@@ -43,13 +43,11 @@ const mapStateToProps = ({ global }) => ({
 
 const mapDispatchToProps = dispatch => ({
   getPost: post => dispatch(fetchPost(post)),
-  deletePost: post => dispatch(deletePost(post)),
 });
 
 PostDetail.propTypes = {
   post: PropTypes.object,
   postId: PropTypes.number,
-  deletePost: PropTypes.func,
   getPost: PropTypes.func,
 };
 

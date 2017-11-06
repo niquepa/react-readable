@@ -4,7 +4,6 @@ import { Link, withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { Card, CardHeader, CardTitle, CardSubtitle, CardMedia, CardText, CardActions, Button, Icon, Grid, Cell } from 'react-mdc-web/lib';
 import PostVote from './PostVote';
-import { deletePost } from '../../actions/index';
 
 class PostCard extends Component {
   summary = (str) => {
@@ -61,12 +60,10 @@ const mapStateToProps = ({ global }) => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  deletePost: post => dispatch(deletePost(post)),
 });
 
 PostCard.propTypes = {
   post: PropTypes.object,
-  deletePost: PropTypes.func,
 };
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(PostCard));

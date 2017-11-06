@@ -22,6 +22,16 @@ class PostsList extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
+  componentDidMount() {
+    this.props.getPosts(this.props.category);
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (this.props.category != nextProps.category) {
+      this.props.getPosts(nextProps.category);
+    }
+  }
+
   handleInputChange(event) {
     const target = event.target;
     const value = target.type === 'checkbox' ? target.checked : target.value;
@@ -50,16 +60,6 @@ class PostsList extends Component {
       author: '',
       category: '',
     });
-  }
-
-  componentDidMount() {
-    this.props.getPosts(this.props.category);
-  }
-
-  componentWillReceiveProps(nextProps) {
-    if (this.props.category != nextProps.category) {
-      this.props.getPosts(nextProps.category);
-    }
   }
 
   sortPosts = (posts, method) => {

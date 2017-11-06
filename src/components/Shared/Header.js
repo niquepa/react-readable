@@ -1,14 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link, Route, withRouter } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import { Toolbar, ToolbarRow, ToolbarSection, ToolbarTitle, Tabbar, Tab, Snackbar } from 'react-mdc-web/lib';
 import { removeSnack } from '../../actions/index';
 
 class Header extends Component {
-  state = {
-    // activeCat: null,
-  }
-
   render() {
     const { categories, snack } = this.props;
     const openSnack = !!(snack && snack.length > 0);
@@ -55,5 +52,11 @@ const mapStateToProps = ({ global }) => ({
 const mapDispatchToProps = dispatch => ({
   removeSnack: (postId, body) => dispatch(removeSnack()),
 });
+
+Header.propTypes = {
+  categories: PropTypes.array,
+  snack: PropTypes.string,
+  removeSnack: PropTypes.func,
+};
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Header));
