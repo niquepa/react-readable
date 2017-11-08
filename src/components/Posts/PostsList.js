@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Title, Grid, RadioGroup, Radio, Dialog, DialogTitle, DialogBody, DialogFooter, DialogHeader, Cell, Textfield, Button, Icon, Caption } from 'react-mdc-web/lib';
+import { Toolbar, ToolbarSection, ToolbarRow, ToolbarTitle } from 'react-mdc-web/lib';
 import { withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { fetchPosts, newPost, addSnack } from '../../actions/index';
@@ -78,24 +79,34 @@ class PostsList extends Component {
     return (
       <main className="mdc-content posts-list">
         <main className="posts-list-int">
-          <Grid className="sort-by">
-            <Cell col={2} tablet={6} phone={12}>
-              <Button raised dense primary className="card-buttons" onClick={() => { this.setState({ isOpenCreate: true }); }}><Icon name="add_circle" className="mdc-button__icon" /> New Post</Button>
-            </Cell>
-            <Cell col={10} tablet={6} phone={12}>
-              <Caption>Sort by:</Caption>
-              <RadioGroup
-                onChange={({ target: { value } }) => { this.setState({ sort: value }); }}
-                name="saturn"
-                value={this.state.sort}
-                className="radio-horizontal"
-              >
-                <Radio value="voteScore">Votes</Radio>
-                <Radio value="timestamp">Date</Radio>
-                <Radio value="commentCount">Comments</Radio>
-              </RadioGroup>
-            </Cell>
-          </Grid>
+          <Toolbar className="toolbar mdc-theme--primary-light-bg">
+            <ToolbarRow>
+              <ToolbarSection align="start">
+                <ToolbarTitle>Posts <Button raised dense primary className="card-buttons" onClick={() => { this.setState({ isOpenCreate: true }); }}><Icon name="add_circle" className="mdc-button__icon" /> New Post</Button></ToolbarTitle>
+              </ToolbarSection>
+              <ToolbarSection>
+                <Grid>
+                  <Cell col={2}>
+                    <ul className="mdc-list">
+                      <li className='mdc-list-item'>Sort by: </li>
+                    </ul>
+                  </Cell>
+                  <Cell col={10}>
+                    <RadioGroup
+                      onChange={({ target: { value } }) => { this.setState({ sort: value }); }}
+                      name="saturn"
+                      value={this.state.sort}
+                      className="radio-horizontal"
+                    >
+                      <Radio value="voteScore">Votes</Radio>
+                      <Radio value="timestamp">Date</Radio>
+                      <Radio value="commentCount">Comments</Radio>
+                    </RadioGroup>
+                  </Cell>
+                </Grid>
+              </ToolbarSection>
+            </ToolbarRow>
+          </Toolbar>
           <Grid>
             { filteredPosts && filteredPosts.map(post => (
               <PostCard post={post} key={post.id} />
