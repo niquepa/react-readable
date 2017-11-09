@@ -82,18 +82,18 @@ class PostsList extends Component {
           <Toolbar className="toolbar mdc-theme--primary-light-bg post-title">
             <ToolbarRow>
               <ToolbarSection align="start">
-                <ToolbarTitle>Posts <Button raised dense primary className="card-buttons" onClick={() => { this.setState({ isOpenCreate: true }); }}><Icon name="add_circle" className="mdc-button__icon" /> New Post</Button></ToolbarTitle>
+                <ToolbarTitle>Posts</ToolbarTitle>
               </ToolbarSection>
               <ToolbarSection>
                 <Grid>
-                  <Cell col={2}>
+                  <Cell col={4}>
                     <ul className="mdc-list">
                       <li className='mdc-list-item'>
                         <span className="mdc-toolbar__title">Sort by:</span>
                       </li>
                     </ul>
                   </Cell>
-                  <Cell col={10}>
+                  <Cell col={8}>
                     <RadioGroup
                       onChange={({ target: { value } }) => { this.setState({ sort: value }); }}
                       name="saturn"
@@ -106,6 +106,9 @@ class PostsList extends Component {
                     </RadioGroup>
                   </Cell>
                 </Grid>
+              </ToolbarSection>
+              <ToolbarSection>
+                <Button raised dense primary className="card-buttons" onClick={() => { this.setState({ isOpenCreate: true }); }}><Icon name="add_circle" className="mdc-button__icon" /> New Post</Button>
               </ToolbarSection>
             </ToolbarRow>
           </Toolbar>

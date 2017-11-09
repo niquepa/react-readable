@@ -71,19 +71,18 @@ class CommentsList extends Component {
             <ToolbarSection align="start">
               <ToolbarTitle>
                 Comments
-                <Button raised dense primary className="card-buttons" onClick={() => { this.setState({ isOpenCreate: true }); }}><Icon name="add_circle" className="mdc-button__icon" /> New Comment</Button>
               </ToolbarTitle>
             </ToolbarSection>
             <ToolbarSection>
               <Grid>
-                <Cell col={2}>
+                <Cell col={3}>
                   <ul className="mdc-list">
                     <li className='mdc-list-item'>
                       <span className="mdc-toolbar__title">Sort by:</span>
                     </li>
                   </ul>
                 </Cell>
-                <Cell col={10}>
+                <Cell col={9}>
                   <RadioGroup
                     onChange={({ target: { value } }) => { this.setState({ sort: value }); }}
                     name="saturn"
@@ -95,6 +94,9 @@ class CommentsList extends Component {
                   </RadioGroup>
                 </Cell>
               </Grid>
+            </ToolbarSection>
+            <ToolbarSection>
+              <Button raised dense primary className="card-buttons" onClick={() => { this.setState({ isOpenCreate: true }); }}><Icon name="add_circle" className="mdc-button__icon" /> Add Comment</Button>
             </ToolbarSection>
           </ToolbarRow>
         </Toolbar>

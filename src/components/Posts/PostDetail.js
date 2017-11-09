@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link, withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import { Title, Subheading2, Body1, Button, Icon } from 'react-mdc-web/lib';
+import { Title, Subheading2, Body1, Button, Icon, Toolbar, ToolbarRow, ToolbarSection, ToolbarTitle, Cell, Card, CardHeader, CardTitle, CardSubtitle, CardMedia, CardText, CardActions, Grid } from 'react-mdc-web/lib';
+import Moment from 'react-moment';
 import PostVote from './PostVote';
 import CommentsList from '../Comments/CommentsList';
 import { fetchPost } from '../../actions/index';
@@ -18,15 +19,63 @@ class PostDetail extends Component {
     return (
       <main className="mdc-content post-detail">
         { ((post || '').id || '') !== '' ?
-          <main>
-            <Title>{post.title}</Title>
-            <caption>Last updated: {post.timestamp}</caption>
-            <Subheading2>by <b>{post.author}</b> in <Link to={`/${post.category}`}>{post.category}</Link> | <b>{post.commentCount}</b> Comments</Subheading2>
-            <PostVote postId={post.id} voteScore={post.voteScore} />
-            <Body1>{post.body}</Body1>
-            <Link to={`/${post.category}/${post.id}/edit`}><Button raised dense primary><Icon name="edit" className="mdc-button__icon" /> Edit</Button></Link>
+          <Cell col={12} key={post.id}>
+            <Card className="post-card" key={post.id}>
+              <CardHeader>
+                <CardTitle>
+                  <Toolbar className="toolbar mdc-theme--primary-light-bg post-title">
+                    <ToolbarRow>
+                      <ToolbarSection align="start">
+                        <ToolbarTitle>{post.title}</ToolbarTitle>
+                      </ToolbarSection>
+                      <ToolbarSection>
+                        <PostVote postId={post.id} voteScore={post.voteScore} />
+                      </ToolbarSection>
+                      <ToolbarSection>
+                        <Link to={`/${post.category}/${post.id}/edit`}><Button raised dense primary><Icon name="edit" className="mdc-button__icon" /> Edit Post</Button></Link>
+                      </ToolbarSection>
+                    </ToolbarRow>
+                  </Toolbar>
+                </CardTitle>
+                <CardSubtitle>
+                  by <b>{post.author}</b> in <Link to={post.category}>{post.category}</Link>
+                </CardSubtitle>
+                <CardSubtitle>
+                  Last updated: <b><Moment format="YYYY-MM-DD HH:mm">{post.timestamp}</Moment></b>
+                </CardSubtitle>
+              </CardHeader>
+              <CardMedia
+                style={{
+                  backgroundImage: 'url("/card_bg.jpg")',
+                  height: '400px',
+                  backgroundSize: 'cover',
+                }}
+              />
+              <CardText>
+                {post.body}
+              </CardText>
+            </Card>
             <CommentsList postId={this.props.postId} />
-          </main>
+          </Cell>
+          // <main>
+          //   <Toolbar className="toolbar mdc-theme--primary-light-bg post-title">
+          //     <ToolbarRow>
+          //       <ToolbarSection align="start">
+          //         <ToolbarTitle>{post.title}</ToolbarTitle>
+          //       </ToolbarSection>
+          //       <ToolbarSection>
+          //         <PostVote postId={post.id} voteScore={post.voteScore} />
+          //       </ToolbarSection>
+          //       <ToolbarSection>
+          //         <Link to={`/${post.category}/${post.id}/edit`}><Button raised dense primary><Icon name="edit" className="mdc-button__icon" /> Edit Post</Button></Link>
+          //       </ToolbarSection>
+          //     </ToolbarRow>
+          //   </Toolbar>
+          //   <caption>Last updated: {post.timestamp}</caption>
+          //   <Subheading2>by <b>{post.author}</b> in <Link to={`/${post.category}`}>{post.category}</Link></Subheading2>
+          //   <Body1>{post.body}</Body1>
+          //   <CommentsList postId={this.props.postId} />
+          // </main>
       :
           <main>
             <Title>POST NOT FOUND</Title>
