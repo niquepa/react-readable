@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Title, Grid, RadioGroup, Radio, Dialog, DialogTitle, DialogBody, DialogFooter, DialogHeader, Cell, Textfield, Button, Icon } from 'react-mdc-web/lib';
+import { Title, Grid, RadioGroup, Radio, Dialog, DialogTitle, DialogBody, DialogFooter, DialogHeader, Cell, Textfield, Button, Icon, Toolbar, ToolbarSection, ToolbarTitle, ToolbarRow } from 'react-mdc-web/lib';
 import { withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { fetchComments, newCommentFetchPost, addSnack } from '../../actions/index';
@@ -66,16 +66,38 @@ class CommentsList extends Component {
 
     return (
       <main className="mdc-content post-detail">
-        <Title>Comments:</Title>
-        <RadioGroup
-          onChange={({ target: { value } }) => { this.setState({ sort: value }); }}
-          name="saturn"
-          value={this.state.sort}
-        >
-          <Radio value="voteScore">Votes</Radio>
-          <Radio value="timestamp">Date</Radio>
-        </RadioGroup>
-        <Button raised dense primary className="card-buttons" onClick={() => { this.setState({ isOpenCreate: true }); }}><Icon name="add_circle" className="mdc-button__icon" /> New Comment</Button>
+        <Toolbar className="toolbar mdc-theme--primary-light-bg post-title">
+          <ToolbarRow>
+            <ToolbarSection align="start">
+              <ToolbarTitle>
+                Comments
+                <Button raised dense primary className="card-buttons" onClick={() => { this.setState({ isOpenCreate: true }); }}><Icon name="add_circle" className="mdc-button__icon" /> New Comment</Button>
+              </ToolbarTitle>
+            </ToolbarSection>
+            <ToolbarSection>
+              <Grid>
+                <Cell col={2}>
+                  <ul className="mdc-list">
+                    <li className='mdc-list-item'>
+                      <span className="mdc-toolbar__title">Sort by:</span>
+                    </li>
+                  </ul>
+                </Cell>
+                <Cell col={10}>
+                  <RadioGroup
+                    onChange={({ target: { value } }) => { this.setState({ sort: value }); }}
+                    name="saturn"
+                    value={this.state.sort}
+                    className="radio-horizontal"
+                  >
+                    <Radio value="voteScore">Votes</Radio>
+                    <Radio value="timestamp">Date</Radio>
+                  </RadioGroup>
+                </Cell>
+              </Grid>
+            </ToolbarSection>
+          </ToolbarRow>
+        </Toolbar>
         <Grid>
           { filteredComments && filteredComments.map(comment => (
             <CommentCard comment={comment} key={comment.id} />

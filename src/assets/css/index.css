@@ -11,7 +11,7 @@ body{
 }
 
 .posts-list-int {
-  padding: 16px;
+  /*padding: 16px;*/
   flex: 1;
 }
 
@@ -59,4 +59,5 @@ body{
   --mdc-theme-text-primary-on-primary: white;
   --mdc-theme-text-primary-on-light: white;
   --mdc-theme-text-secondary-on-light: white;
+  --mdc-theme-text-primary-on-background: white;
 }

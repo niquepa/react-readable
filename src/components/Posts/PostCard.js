@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { Link, withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { Card, CardHeader, CardTitle, CardSubtitle, CardMedia, CardText, CardActions, Button, Icon, Grid, Cell } from 'react-mdc-web/lib';
+import Moment from 'react-moment';
 import PostVote from './PostVote';
 
 class PostCard extends Component {
@@ -21,22 +22,27 @@ class PostCard extends Component {
       <Cell col={4} tablet={6} phone={12} key={post.id}>
         <Card className="post-card" key={post.id}>
           <CardHeader>
-            <CardTitle>{post.title}</CardTitle>
+            <CardTitle><Link to={`/${post.category}/${post.id}`}>{post.title}</Link></CardTitle>
             <CardSubtitle>
               by <b>{post.author}</b> in <Link to={post.category}>{post.category}</Link>
+            </CardSubtitle>
+            <CardSubtitle>
+              Last updated: <b><Moment format="YYYY-MM-DD HH:mm">{post.timestamp}</Moment></b>
             </CardSubtitle>
             <CardSubtitle>
               <b>{post.commentCount}</b> Comments |
               <PostVote postId={post.id} voteScore={post.voteScore} />
             </CardSubtitle>
           </CardHeader>
-          <CardMedia
-            style={{
-              backgroundImage: 'url("/card_bg.jpg")',
-              height: '300px',
-              backgroundSize: 'cover',
-            }}
-          />
+          <Link to={`/${post.category}/${post.id}`}>
+            <CardMedia
+              style={{
+                backgroundImage: 'url("/card_bg.jpg")',
+                height: '300px',
+                backgroundSize: 'cover',
+              }}
+            />
+          </Link>
           <CardText>
             {this.summary(post.body)}
           </CardText>

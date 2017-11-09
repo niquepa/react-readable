@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { Card, CardHeader, CardTitle, CardSubtitle, CardText, CardActions, Button, Icon, Grid, Cell, Dialog, DialogHeader, DialogTitle, DialogBody, DialogFooter, Textfield, Title } from 'react-mdc-web/lib';
+import Moment from 'react-moment';
 import CommentVote from './CommentVote';
 import { deleteCommentFetchPost, editComment, addSnack } from '../../actions/index';
 
@@ -55,7 +56,7 @@ class CommentCard extends Component {
           <CardHeader>
             <CardTitle>by <b>{comment.author}</b></CardTitle>
             <CardSubtitle>
-              Last updated: {comment.timestamp}
+              Last updated: <b><Moment format="YYYY-MM-DD HH:mm">{comment.timestamp}</Moment></b>
             </CardSubtitle>
             <CardSubtitle>
               <CommentVote commentId={comment.id} voteScore={comment.voteScore} />

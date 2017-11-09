@@ -79,7 +79,7 @@ class PostsList extends Component {
     return (
       <main className="mdc-content posts-list">
         <main className="posts-list-int">
-          <Toolbar className="toolbar mdc-theme--primary-light-bg">
+          <Toolbar className="toolbar mdc-theme--primary-light-bg post-title">
             <ToolbarRow>
               <ToolbarSection align="start">
                 <ToolbarTitle>Posts <Button raised dense primary className="card-buttons" onClick={() => { this.setState({ isOpenCreate: true }); }}><Icon name="add_circle" className="mdc-button__icon" /> New Post</Button></ToolbarTitle>
@@ -88,7 +88,9 @@ class PostsList extends Component {
                 <Grid>
                   <Cell col={2}>
                     <ul className="mdc-list">
-                      <li className='mdc-list-item'>Sort by: </li>
+                      <li className='mdc-list-item'>
+                        <span className="mdc-toolbar__title">Sort by:</span>
+                      </li>
                     </ul>
                   </Cell>
                   <Cell col={10}>
