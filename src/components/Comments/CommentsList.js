@@ -19,7 +19,7 @@ class CommentsList extends Component {
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
-  
+
   componentDidMount() {
     this.props.getComments(this.props.postId);
   }
@@ -38,7 +38,7 @@ class CommentsList extends Component {
     event.preventDefault();
     this.props.addSnack('Comment created!');
     this.props.createComment({
-      id: Date.now(),
+      id: `c-${Date.now()}`,
       parentId: this.props.postId,
       timestamp: Date.now(),
       author: this.state.author,
@@ -77,7 +77,7 @@ class CommentsList extends Component {
               <Grid>
                 <Cell col={3}>
                   <ul className="mdc-list">
-                    <li className='mdc-list-item'>
+                    <li className="mdc-list-item">
                       <span className="mdc-toolbar__title">Sort by:</span>
                     </li>
                   </ul>
@@ -167,7 +167,7 @@ CommentsList.propTypes = {
   createComment: PropTypes.func,
   addSnack: PropTypes.func,
   postId: PropTypes.string,
-  
+
 };
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(CommentsList));

@@ -31,6 +31,7 @@ class PostsList extends Component {
     if (this.props.category !== nextProps.category) {
       this.props.getPosts(nextProps.category);
     }
+    this.assignDefaultCategory(nextProps.categories);
   }
 
   handleInputChange(event) {
@@ -47,7 +48,7 @@ class PostsList extends Component {
     event.preventDefault();
     this.props.addSnack('Post created!');
     this.props.createPost({
-      id: Date.now(),
+      id: `p-${Date.now()}`,
       timestamp: Date.now(),
       title: this.state.title,
       body: this.state.body,
@@ -71,6 +72,12 @@ class PostsList extends Component {
     return filteredPosts;
   }
 
+  assignDefaultCategory = (categories) => {
+    if (categories.length > 0 && this.state.category === '') {
+      this.setState({ category: categories[0].path });
+    }
+  }
+
   render() {
     const { posts, categories } = this.props;
 
@@ -88,7 +95,7 @@ class PostsList extends Component {
                 <Grid>
                   <Cell col={4}>
                     <ul className="mdc-list">
-                      <li className='mdc-list-item'>
+                      <li className="mdc-list-item">
                         <span className="mdc-toolbar__title">Sort by:</span>
                       </li>
                     </ul>
