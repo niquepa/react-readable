@@ -61,3 +61,8 @@ body{
   --mdc-theme-text-secondary-on-light: white;
   --mdc-theme-text-primary-on-background: white;
 }
+
+.mdc-card__supporting-text  {
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}

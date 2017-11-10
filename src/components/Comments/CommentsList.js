@@ -127,14 +127,12 @@ class CommentsList extends Component {
                 </Cell>
                 <Cell col={12}>
                   <Title>Comment body:</Title>
-                  <div
-                    className="mdc-textfield mdc-textfield--textarea mdc-textfield--fullwidth mdc-textfield--upgraded"
-                  >
+                  <div className="mdc-textfield mdc-textfield--textarea mdc-textfield--fullwidth mdc-textfield--upgraded mdc-textfield--multiline">
                     <textarea
                       name="body"
                       required
                       className="mdc-textfield__input"
-                      rows="20"
+                      rows="10"
                       value={this.state.body}
                       onChange={this.handleInputChange}
                     />

@@ -115,7 +115,7 @@ class PostDetailEdit extends Component {
             </Cell>
             <Cell col={12}>
               <Title>Post body:</Title>
-              <div className="mdc-textfield mdc-textfield--textarea mdc-textfield--fullwidth mdc-textfield--upgraded">
+              <div className="mdc-textfield mdc-textfield--textarea mdc-textfield--fullwidth mdc-textfield--upgraded mdc-textfield--multiline">
                 <textarea
                   id="post-body"
                   name="body"
