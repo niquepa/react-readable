@@ -25,7 +25,7 @@ class PostDetailEdit extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    if (this.props.post) {
+    if (nextProps.post) {
       this.assignState(nextProps.post);
     }
   }
