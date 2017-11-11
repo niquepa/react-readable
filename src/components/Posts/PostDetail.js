@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link, withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import { Title, Subheading2, Body1, Button, Icon, Toolbar, ToolbarRow, ToolbarSection, ToolbarTitle, Cell, Card, CardHeader, CardTitle, CardSubtitle, CardMedia, CardText, CardActions, Grid } from 'react-mdc-web/lib';
+import { Title, Button, Icon, Cell, Card, CardHeader, CardTitle, CardSubtitle, CardMedia, CardText, Grid } from 'react-mdc-web/lib';
 import Moment from 'react-moment';
 import PostVote from './PostVote';
 import CommentsList from '../Comments/CommentsList';

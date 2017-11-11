@@ -62,10 +62,10 @@ class PostCard extends Component {
   }
 }
 
-const mapStateToProps = ({ global }) => ({
+const mapStateToProps = () => ({
 });
 
-const mapDispatchToProps = dispatch => ({
+const mapDispatchToProps = () => ({
 });
 
 PostCard.propTypes = {

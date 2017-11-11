@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Title, Grid, RadioGroup, Radio, Dialog, DialogTitle, DialogBody, DialogFooter, DialogHeader, Cell, Textfield, Button, Icon, Caption } from 'react-mdc-web/lib';
-import { Toolbar, ToolbarSection, ToolbarRow, ToolbarTitle } from 'react-mdc-web/lib';
+import { Title, Grid, RadioGroup, Radio, Dialog, DialogTitle, DialogBody, DialogFooter, DialogHeader, Cell, Textfield, Button, Icon } from 'react-mdc-web/lib';
 import { withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { fetchPosts, newPost, addSnack } from '../../actions/index';
