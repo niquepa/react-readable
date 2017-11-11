@@ -66,40 +66,34 @@ class CommentsList extends Component {
 
     return (
       <main className="mdc-content post-detail">
-        <Toolbar className="toolbar mdc-theme--primary-light-bg post-title">
-          <ToolbarRow>
-            <ToolbarSection align="start">
-              <ToolbarTitle>
-                Comments
-              </ToolbarTitle>
-            </ToolbarSection>
-            <ToolbarSection>
-              <Grid>
-                <Cell col={3}>
-                  <ul className="mdc-list">
-                    <li className="mdc-list-item">
-                      <span className="mdc-toolbar__title">Sort by:</span>
-                    </li>
-                  </ul>
-                </Cell>
-                <Cell col={9}>
-                  <RadioGroup
-                    onChange={({ target: { value } }) => { this.setState({ sort: value }); }}
-                    name="saturn"
-                    value={this.state.sort}
-                    className="radio-horizontal"
-                  >
-                    <Radio value="voteScore">Votes</Radio>
-                    <Radio value="timestamp">Date</Radio>
-                  </RadioGroup>
-                </Cell>
-              </Grid>
-            </ToolbarSection>
-            <ToolbarSection>
+        <div className="post-title mdc-theme--primary-light-bg">
+          <Grid>
+            <Cell col={4} tablet={12}>
+              <h1 className="mdc-toolbar__title text-white">Comments</h1>
+            </Cell>
+            <Cell col={1} tablet={3} phone={12}>
+              <ul className="mdc-list">
+                <li className="mdc-list-item">
+                  <span className="mdc-toolbar__title">Sort by:</span>
+                </li>
+              </ul>
+            </Cell>
+            <Cell col={3} tablet={9} phone={12}>
+              <RadioGroup
+                onChange={({ target: { value } }) => { this.setState({ sort: value }); }}
+                name="saturn"
+                value={this.state.sort}
+                className="radio-horizontal"
+              >
+                <Radio value="voteScore">Votes</Radio>
+                <Radio value="timestamp">Date</Radio>
+              </RadioGroup>
+            </Cell>
+            <Cell col={4} tablet={12} className="text-centered">
               <Button raised dense primary className="card-buttons" onClick={() => { this.setState({ isOpenCreate: true }); }}><Icon name="add_circle" className="mdc-button__icon" /> Add Comment</Button>
-            </ToolbarSection>
-          </ToolbarRow>
-        </Toolbar>
+            </Cell>
+          </Grid>
+        </div>
         <Grid>
           { filteredComments && filteredComments.map(comment => (
             <CommentCard comment={comment} key={comment.id} />

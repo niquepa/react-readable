@@ -66,3 +66,11 @@ body{
   white-space: pre-wrap;
   word-wrap: break-word;
 }
+
+.text-centered  {
+  text-align: center;
+}
+
+.text-white {
+  color: #FFF;
+}

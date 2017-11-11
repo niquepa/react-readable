@@ -86,39 +86,35 @@ class PostsList extends Component {
     return (
       <main className="mdc-content posts-list">
         <main className="posts-list-int">
-          <Toolbar className="toolbar mdc-theme--primary-light-bg post-title">
-            <ToolbarRow>
-              <ToolbarSection align="start">
-                <ToolbarTitle>Posts</ToolbarTitle>
-              </ToolbarSection>
-              <ToolbarSection>
-                <Grid>
-                  <Cell col={4}>
-                    <ul className="mdc-list">
-                      <li className="mdc-list-item">
-                        <span className="mdc-toolbar__title">Sort by:</span>
-                      </li>
-                    </ul>
-                  </Cell>
-                  <Cell col={8}>
-                    <RadioGroup
-                      onChange={({ target: { value } }) => { this.setState({ sort: value }); }}
-                      name="saturn"
-                      value={this.state.sort}
-                      className="radio-horizontal"
-                    >
-                      <Radio value="voteScore">Votes</Radio>
-                      <Radio value="timestamp">Date</Radio>
-                      <Radio value="commentCount">Comments</Radio>
-                    </RadioGroup>
-                  </Cell>
-                </Grid>
-              </ToolbarSection>
-              <ToolbarSection>
+          <div className="post-title mdc-theme--primary-light-bg">
+            <Grid>
+              <Cell col={4} tablet={12}>
+                <h1 className="mdc-toolbar__title text-white">Posts</h1>
+              </Cell>
+              <Cell col={1} tablet={3} phone={12}>
+                <ul className="mdc-list">
+                  <li className="mdc-list-item">
+                    <span className="mdc-toolbar__title">Sort by:</span>
+                  </li>
+                </ul>
+              </Cell>
+              <Cell col={3} tablet={9} phone={12}>
+                <RadioGroup
+                  onChange={({ target: { value } }) => { this.setState({ sort: value }); }}
+                  name="saturn"
+                  value={this.state.sort}
+                  className="radio-horizontal"
+                >
+                  <Radio value="voteScore">Votes</Radio>
+                  <Radio value="timestamp">Date</Radio>
+                  <Radio value="commentCount">Comments</Radio>
+                </RadioGroup>
+              </Cell>
+              <Cell col={4} tablet={12} className="text-centered">
                 <Button raised dense primary className="card-buttons" onClick={() => { this.setState({ isOpenCreate: true }); }}><Icon name="add_circle" className="mdc-button__icon" /> New Post</Button>
-              </ToolbarSection>
-            </ToolbarRow>
-          </Toolbar>
+              </Cell>
+            </Grid>
+          </div>
           <Grid>
             { filteredPosts && filteredPosts.map(post => (
               <PostCard post={post} key={post.id} />

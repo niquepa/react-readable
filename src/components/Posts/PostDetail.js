@@ -23,19 +23,19 @@ class PostDetail extends Component {
             <Card className="post-card" key={post.id}>
               <CardHeader>
                 <CardTitle>
-                  <Toolbar className="toolbar mdc-theme--primary-light-bg post-title">
-                    <ToolbarRow>
-                      <ToolbarSection align="start">
-                        <ToolbarTitle>{post.title}</ToolbarTitle>
-                      </ToolbarSection>
-                      <ToolbarSection>
+                  <div className="post-title mdc-theme--primary-light-bg">
+                    <Grid>
+                      <Cell col={4} tablet={12}>
+                        <h2 className="text-white">{post.title}</h2>
+                      </Cell>
+                      <Cell col={4} tablet={12} phone={12} className="text-centered">
                         <PostVote postId={post.id} voteScore={post.voteScore} />
-                      </ToolbarSection>
-                      <ToolbarSection>
+                      </Cell>
+                      <Cell col={4} tablet={12} className="text-centered">
                         <Link to={`/${post.category}/${post.id}/edit`}><Button raised dense primary><Icon name="edit" className="mdc-button__icon" /> Edit Post</Button></Link>
-                      </ToolbarSection>
-                    </ToolbarRow>
-                  </Toolbar>
+                      </Cell>
+                    </Grid>
+                  </div>
                 </CardTitle>
                 <CardSubtitle>
                   by <b>{post.author}</b> in <Link to={post.category}>{post.category}</Link>
