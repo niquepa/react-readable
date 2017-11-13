@@ -2,7 +2,7 @@ import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import { Link, Route, withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import { Toolbar, ToolbarRow, ToolbarSection, ToolbarTitle, Tabbar, Tab, Snackbar, Title } from 'react-mdc-web/lib';
+import { Toolbar, ToolbarRow, ToolbarSection, ToolbarTitle, Tabbar, Tab, Snackbar } from 'react-mdc-web/lib';
 import { removeSnack } from '../../actions/index';
 
 class Header extends PureComponent {
@@ -53,7 +53,7 @@ const mapStateToProps = ({ global }) => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  removeSnack: (postId, body) => dispatch(removeSnack()),
+  removeSnack: () => dispatch(removeSnack()),
 });
 
 Header.propTypes = {

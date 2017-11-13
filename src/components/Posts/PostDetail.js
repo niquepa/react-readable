@@ -57,25 +57,6 @@ class PostDetail extends Component {
             </Card>
             <CommentsList postId={this.props.postId} />
           </Cell>
-          // <main>
-          //   <Toolbar className="toolbar mdc-theme--primary-light-bg post-title">
-          //     <ToolbarRow>
-          //       <ToolbarSection align="start">
-          //         <ToolbarTitle>{post.title}</ToolbarTitle>
-          //       </ToolbarSection>
-          //       <ToolbarSection>
-          //         <PostVote postId={post.id} voteScore={post.voteScore} />
-          //       </ToolbarSection>
-          //       <ToolbarSection>
-          //         <Link to={`/${post.category}/${post.id}/edit`}><Button raised dense primary><Icon name="edit" className="mdc-button__icon" /> Edit Post</Button></Link>
-          //       </ToolbarSection>
-          //     </ToolbarRow>
-          //   </Toolbar>
-          //   <caption>Last updated: {post.timestamp}</caption>
-          //   <Subheading2>by <b>{post.author}</b> in <Link to={`/${post.category}`}>{post.category}</Link></Subheading2>
-          //   <Body1>{post.body}</Body1>
-          //   <CommentsList postId={this.props.postId} />
-          // </main>
       :
           <main>
             <Title>POST NOT FOUND</Title>
