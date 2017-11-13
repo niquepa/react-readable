@@ -11,7 +11,6 @@ body{
 }
 
 .posts-list-int {
-  /*padding: 16px;*/
   flex: 1;
 }
 
@@ -73,4 +72,8 @@ body{
 
 .text-white {
   color: #FFF;
+}
+
+.delete {
+  --mdc-theme-primary: red;
 }

@@ -83,32 +83,3 @@ const global = (state = initialState, action) => {
 export default combineReducers({
   global,
 });
-
-//
-// function posts(state = {}, action) {
-//   switch (action.type) {
-//     case ADD_POST:
-//       const { recipe } = action;
-//
-//       return {
-//         ...state,
-//         [recipe.label]: recipe,
-//       };
-//     default:
-//       return state;
-//   }
-// }
-//
-// function comments(state = {}, action) {
-//   switch (action.type) {
-//     case ADD_COMMENT:
-//       const { recipe } = action;
-//
-//       return {
-//         ...state,
-//         [recipe.label]: recipe,
-//       };
-//     default:
-//       return state;
-//   }
-// }

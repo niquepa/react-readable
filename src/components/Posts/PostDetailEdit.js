@@ -129,7 +129,7 @@ class PostDetailEdit extends Component {
 
             </Cell>
           </Grid>
-          <Button raised dense primary type="button" onClick={() => this.setState({ isOpenDelete: true })}><Icon name="delete" className="mdc-button__icon" /> Delete</Button>
+          <Button raised dense primary type="button" className="delete" onClick={() => this.setState({ isOpenDelete: true })}><Icon name="delete" className="mdc-button__icon" /> Delete</Button>
           <Button raised dense primary type="button" onClick={this.props.history.goBack}><Icon name="cancel" className="mdc-button__icon" /> Cancel</Button>
           <Button raised dense primary type="submit" ><Icon name="save" className="mdc-button__icon" /> Save</Button>
         </form>
@@ -146,7 +146,7 @@ class PostDetailEdit extends Component {
           </DialogBody>
           <DialogFooter>
             <Button raised dense primary type="button" onClick={() => { this.setState({ isOpenDelete: false }); }}><Icon name="cancel" className="mdc-button__icon" /> Cancel</Button>
-            <Button raised dense primary type="button" onClick={() => this.removePost(post)}><Icon name="delete" className="mdc-button__icon" /> Delete</Button>
+            <Button raised dense primary type="button" className="delete" onClick={() => this.removePost(post)}><Icon name="delete" className="mdc-button__icon" /> Delete</Button>
           </DialogFooter>
         </Dialog>
       </main>
