@@ -35,6 +35,7 @@ const CommentsListActions = props =>
   );
 
 CommentsListActions.propTypes = {
+  total: PropTypes.string,
   sort: PropTypes.string,
   handleSortMethod: PropTypes.func,
   handleOpenCreate: PropTypes.func,
