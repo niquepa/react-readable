@@ -95,7 +95,12 @@ class PostsList extends Component {
     return (
       <main className="mdc-content posts-list">
         <main className="posts-list-int">
-          <PostListActions sort={this.state.sort} handleSortMethod={this.handleSortMethod} openCreate={this.state.isOpenCreate} handleOpenCreate={this.handleOpenCreate} />
+          <PostListActions
+            sort={this.state.sort}
+            handleSortMethod={this.handleSortMethod}
+            openCreate={this.state.isOpenCreate}
+            handleOpenCreate={this.handleOpenCreate}
+          />
           <Grid>
             { filteredPosts && filteredPosts.map(post => (
               <PostCard post={post} key={post.id} />
