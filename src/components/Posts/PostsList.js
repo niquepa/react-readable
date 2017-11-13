@@ -4,6 +4,7 @@ import { Title, Grid, RadioGroup, Radio, Dialog, DialogTitle, DialogBody, Dialog
 import { withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { fetchPosts, newPost, addSnack } from '../../actions/index';
+import PostListActions from './PostListActions';
 import PostCard from './PostCard';
 
 class PostsList extends Component {
@@ -20,6 +21,7 @@ class PostsList extends Component {
 
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleSortMethod = this.handleSortMethod.bind(this);
   }
 
   componentDidMount() {
@@ -63,6 +65,14 @@ class PostsList extends Component {
     });
   }
 
+  handleSortMethod = (method) => {
+    this.setState({ sort: method });
+  }
+
+  handleOpenCreate = (value) => {
+    this.setState({ isOpenCreate: value });
+  }
+
   sortPosts = (posts, method) => {
     let filteredPosts = posts;
     if (filteredPosts) {
@@ -85,35 +95,7 @@ class PostsList extends Component {
     return (
       <main className="mdc-content posts-list">
         <main className="posts-list-int">
-          <div className="post-title mdc-theme--primary-light-bg">
-            <Grid>
-              <Cell col={4} tablet={12}>
-                <h1 className="mdc-toolbar__title text-white">Posts</h1>
-              </Cell>
-              <Cell col={1} tablet={3} phone={12}>
-                <ul className="mdc-list">
-                  <li className="mdc-list-item">
-                    <span className="mdc-toolbar__title">Sort by:</span>
-                  </li>
-                </ul>
-              </Cell>
-              <Cell col={3} tablet={9} phone={12}>
-                <RadioGroup
-                  onChange={({ target: { value } }) => { this.setState({ sort: value }); }}
-                  name="saturn"
-                  value={this.state.sort}
-                  className="radio-horizontal"
-                >
-                  <Radio value="voteScore">Votes</Radio>
-                  <Radio value="timestamp">Date</Radio>
-                  <Radio value="commentCount">Comments</Radio>
-                </RadioGroup>
-              </Cell>
-              <Cell col={4} tablet={12} className="text-centered">
-                <Button raised dense primary className="card-buttons" onClick={() => { this.setState({ isOpenCreate: true }); }}><Icon name="add_circle" className="mdc-button__icon" /> New Post</Button>
-              </Cell>
-            </Grid>
-          </div>
+          <PostListActions sort={this.state.sort} handleSortMethod={this.handleSortMethod} openCreate={this.state.isOpenCreate} handleOpenCreate={this.handleOpenCreate} />
           <Grid>
             { filteredPosts && filteredPosts.map(post => (
               <PostCard post={post} key={post.id} />
