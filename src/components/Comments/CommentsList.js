@@ -4,6 +4,7 @@ import { Title, Grid, RadioGroup, Radio, Dialog, DialogTitle, DialogBody, Dialog
 import { withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { fetchComments, newCommentFetchPost, addSnack } from '../../actions/index';
+import CommentsListActions from './CommentsListActions';
 import CommentCard from './CommentCard';
 
 class CommentsList extends Component {
@@ -51,6 +52,14 @@ class CommentsList extends Component {
     });
   }
 
+  handleSortMethod = (method) => {
+    this.setState({ sort: method });
+  }
+
+  handleOpenCreate = (value) => {
+    this.setState({ isOpenCreate: value });
+  }
+
   sortComments = (comments, method) => {
     let filteredComments = comments;
     if (filteredComments) {
@@ -66,34 +75,35 @@ class CommentsList extends Component {
 
     return (
       <main className="mdc-content post-detail">
-        <div className="post-title mdc-theme--primary-light-bg">
-          <Grid>
-            <Cell col={4} tablet={12}>
-              <h1 className="mdc-toolbar__title text-white">{comments.length} Comment(s)</h1>
-            </Cell>
-            <Cell col={1} tablet={3} phone={12}>
-              <ul className="mdc-list">
-                <li className="mdc-list-item">
-                  <span className="mdc-toolbar__title">Sort by:</span>
-                </li>
-              </ul>
-            </Cell>
-            <Cell col={3} tablet={9} phone={12}>
-              <RadioGroup
-                onChange={({ target: { value } }) => { this.setState({ sort: value }); }}
-                name="saturn"
-                value={this.state.sort}
-                className="radio-horizontal"
-              >
-                <Radio value="voteScore">Votes</Radio>
-                <Radio value="timestamp">Date</Radio>
-              </RadioGroup>
-            </Cell>
-            <Cell col={4} tablet={12} className="text-centered">
-              <Button raised dense primary className="card-buttons" onClick={() => { this.setState({ isOpenCreate: true }); }}><Icon name="add_circle" className="mdc-button__icon" /> Add Comment</Button>
-            </Cell>
-          </Grid>
-        </div>
+        <CommentsListActions total={comments.length ? comments.length : '0'} sort={this.state.sort} handleSortMethod={this.handleSortMethod} openCreate={this.state.isOpenCreate} handleOpenCreate={this.handleOpenCreate} />
+        {/* <div className="post-title mdc-theme--primary-light-bg"> */}
+        {/* <Grid> */}
+        {/* <Cell col={4} tablet={12}> */}
+        {/* <h1 className="mdc-toolbar__title text-white">{comments.length} Comment(s)</h1> */}
+        {/* </Cell> */}
+        {/* <Cell col={1} tablet={3} phone={12}> */}
+        {/* <ul className="mdc-list"> */}
+        {/* <li className="mdc-list-item"> */}
+        {/* <span className="mdc-toolbar__title">Sort by:</span> */}
+        {/* </li> */}
+        {/* </ul> */}
+        {/* </Cell> */}
+        {/* <Cell col={3} tablet={9} phone={12}> */}
+        {/* <RadioGroup */}
+        {/* onChange={({ target: { value } }) => { this.setState({ sort: value }); }} */}
+        {/* name="saturn" */}
+        {/* value={this.state.sort} */}
+        {/* className="radio-horizontal" */}
+        {/* > */}
+        {/* <Radio value="voteScore">Votes</Radio> */}
+        {/* <Radio value="timestamp">Date</Radio> */}
+        {/* </RadioGroup> */}
+        {/* </Cell> */}
+        {/* <Cell col={4} tablet={12} className="text-centered"> */}
+        {/* <Button raised dense primary className="card-buttons" onClick={() => { this.setState({ isOpenCreate: true }); }}><Icon name="add_circle" className="mdc-button__icon" /> Add Comment</Button> */}
+        {/* </Cell> */}
+        {/* </Grid> */}
+        {/* </div> */}
         <Grid>
           { filteredComments && filteredComments.map(comment => (
             <CommentCard comment={comment} key={comment.id} />

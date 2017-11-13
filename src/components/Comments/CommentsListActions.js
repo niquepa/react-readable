@@ -2,12 +2,12 @@ import React from 'react';
 import { Grid, RadioGroup, Radio, Cell, Button, Icon } from 'react-mdc-web/lib';
 import PropTypes from 'prop-types';
 
-const PostListActions = props =>
+const CommentsListActions = props =>
   (
     <div className="post-title mdc-theme--primary-light-bg">
       <Grid>
         <Cell col={4} tablet={12}>
-          <h1 className="mdc-toolbar__title text-white">Posts</h1>
+          <h1 className="mdc-toolbar__title text-white">{props.total} Comment(s)</h1>
         </Cell>
         <Cell col={1} tablet={3} phone={12}>
           <ul className="mdc-list">
@@ -25,20 +25,19 @@ const PostListActions = props =>
           >
             <Radio value="voteScore">Votes</Radio>
             <Radio value="timestamp">Date</Radio>
-            <Radio value="commentCount">Comments</Radio>
           </RadioGroup>
         </Cell>
         <Cell col={4} tablet={12} className="text-centered">
-          <Button raised dense primary className="card-buttons" onClick={() => { props.handleOpenCreate(true); }}><Icon name="add_circle" className="mdc-button__icon" /> New Post</Button>
+          <Button raised dense primary className="card-buttons" onClick={() => { props.handleOpenCreate(true); }}><Icon name="add_circle" className="mdc-button__icon" /> Add Comment</Button>
         </Cell>
       </Grid>
     </div>
   );
 
-PostListActions.propTypes = {
+CommentsListActions.propTypes = {
   sort: PropTypes.string,
   handleSortMethod: PropTypes.func,
   handleOpenCreate: PropTypes.func,
 };
 
-export default PostListActions;
+export default CommentsListActions;
