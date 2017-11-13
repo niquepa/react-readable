@@ -69,7 +69,7 @@ class CommentsList extends Component {
         <div className="post-title mdc-theme--primary-light-bg">
           <Grid>
             <Cell col={4} tablet={12}>
-              <h1 className="mdc-toolbar__title text-white">Comments</h1>
+              <h1 className="mdc-toolbar__title text-white">{comments.length} Comment(s)</h1>
             </Cell>
             <Cell col={1} tablet={3} phone={12}>
               <ul className="mdc-list">
